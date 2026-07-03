@@ -1,0 +1,13 @@
+export { HeroSection } from "./HeroSection";
+export { CourseBenefitsSection } from "./CourseBenefitsSection";
+export { TargetAudienceSection } from "./TargetAudienceSection";
+export { ExpertsSection } from "./ExpertsSection";
+export { ProgramSection } from "./ProgramSection";
+export { PricingSection } from "./PricingSection";
+export { LessonsBannerSection } from "./LessonsBannerSection";
+export { EarningsSection } from "./EarningsSection";
+export { ViewsSection } from "./ViewsSection";
+export { FaqSection } from "./FaqSection";
+export { ContactSection } from "./ContactSection";
+export { Header } from "./Header";
+export { Footer } from "./Footer";
