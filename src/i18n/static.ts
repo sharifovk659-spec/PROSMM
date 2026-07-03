@@ -44,6 +44,19 @@ export const EARNERS = [
   { username: "@sabina", amount: "55.000 RUB", avatar: "/images/earnings/avatar-12.jpg" },
 ] as const;
 
+export const VIDEO_REVIEWS = [
+  { id: "r1", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-01.jpg", name: "@Muhammad_dudarkaev", result: "60.000 RUB" },
+  { id: "r2", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-02.jpg", name: "@osha3", result: "90.000 RUB" },
+  { id: "r3", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-03.jpg", name: "@vasi", result: "20.000 RUB" },
+  { id: "r4", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-05.jpg", name: "@Ruslan", result: "110.000 RUB" },
+  { id: "r5", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-07.jpg", name: "@Anna", result: "8.000 RUB" },
+  { id: "r6", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-09.jpg", name: "@kamil", result: "42.000 RUB" },
+  { id: "r7", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-10.jpg", name: "@diana_smm", result: "72.000 RUB" },
+  { id: "r8", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-11.jpg", name: "@timur", result: "33.000 RUB" },
+  { id: "r9", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-12.jpg", name: "@sabina", result: "55.000 RUB" },
+  { id: "r10", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-04.jpg", name: "@blog", result: "30.000 RUB" },
+] as const;
+
 export const VIEW_SCREENS = [
   ["/images/views/screen-1.svg", "/images/views/screen-2.svg"],
   ["/images/views/screen-3.svg"],

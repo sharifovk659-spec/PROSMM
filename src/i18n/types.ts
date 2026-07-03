@@ -70,6 +70,7 @@ export interface LocaleDictionary {
     program: string;
     pricing: string;
     earnings: string;
+    reviews: string;
     views: string;
     faq: string;
     contact: string;
@@ -95,6 +96,9 @@ export interface LocaleDictionary {
     instagram: string;
     languageRu: string;
     languageTj: string;
+    reviewsSubtitle: string;
+    playReview: string;
+    closeReview: string;
   };
   navLinks: NavLink[];
   heroFeatures: HeroFeature[];

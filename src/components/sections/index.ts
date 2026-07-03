@@ -6,6 +6,7 @@ export { ProgramSection } from "./ProgramSection";
 export { PricingSection } from "./PricingSection";
 export { LessonsBannerSection } from "./LessonsBannerSection";
 export { EarningsSection } from "./EarningsSection";
+export { VideoReviewsSection } from "./VideoReviewsSection";
 export { ViewsSection } from "./ViewsSection";
 export { FaqSection } from "./FaqSection";
 export { ContactSection } from "./ContactSection";

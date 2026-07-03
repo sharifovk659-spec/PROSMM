@@ -9,6 +9,7 @@ import {
   PricingSection,
   LessonsBannerSection,
   EarningsSection,
+  VideoReviewsSection,
   ViewsSection,
   FaqSection,
   ContactSection,
@@ -28,6 +29,7 @@ export default function Home() {
         <PricingSection />
         <LessonsBannerSection />
         <EarningsSection />
+        <VideoReviewsSection />
         <ViewsSection />
         <FaqSection />
         <ContactSection />

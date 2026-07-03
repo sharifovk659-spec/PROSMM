@@ -13,6 +13,7 @@ import {
   FLOATING_STARS,
   LINKS,
   SOCIAL_LINKS,
+  VIDEO_REVIEWS,
   VIEW_SCREENS,
 } from "./static";
 import { ruDictionary } from "./ru";
@@ -78,6 +79,13 @@ export interface SiteContent {
   footerInfoLinks: LocaleDictionary["footerInfoLinks"];
   footerDocLinks: LocaleDictionary["footerDocLinks"];
   earners: Earner[];
+  videoReviews: {
+    id: string;
+    videoId: string;
+    avatar: string;
+    name: string;
+    result: string;
+  }[];
   socialLinks: SocialLink[];
   floatingStars: StarPosition[];
   audienceAssets: { freeLessonsPhones: string };
@@ -140,6 +148,7 @@ export function buildContent(locale: Locale): SiteContent {
     footerInfoLinks: dict.footerInfoLinks,
     footerDocLinks: dict.footerDocLinks,
     earners: [...EARNERS],
+    videoReviews: [...VIDEO_REVIEWS],
     socialLinks: [...SOCIAL_LINKS],
     floatingStars: [...FLOATING_STARS],
     audienceAssets: { freeLessonsPhones: ASSETS.freeLessonsPhones },

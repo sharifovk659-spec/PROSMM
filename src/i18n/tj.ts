@@ -154,6 +154,7 @@ export const tjDictionary: LocaleDictionary = {
     program: "БАРНОМАИ ОМӮЗИШ",
     pricing: "ТАРИФҲОИ КУРС",
     earnings: "АЗ КУРС ДАРОМОД КАРДАНД",
+    reviews: "ФИКРҲОИ ДОНИШҶӮЁН",
     views: "ТАМАШОҲО",
     faq: "ҶАВОБ БА САВОЛҲО",
     contact: "ТАМОС",
@@ -180,6 +181,9 @@ export const tjDictionary: LocaleDictionary = {
     instagram: "Instagram",
     languageRu: "РУ",
     languageTj: "ТОҶ",
+    reviewsSubtitle: "Ҳикояҳои ҳақиқии донишҷӯён — барои тамошо видеоро пахш кунед",
+    playReview: "Отзивро тамошо кунед",
+    closeReview: "Пӯшидан",
   },
   navLinks: [
     { label: "Барнома", href: LINKS.program },

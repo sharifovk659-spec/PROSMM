@@ -154,6 +154,7 @@ export const ruDictionary: LocaleDictionary = {
     program: "ПРОГРАММА ОБУЧЕНИЯ",
     pricing: "ТАРИФЫ КУРСА",
     earnings: "ЗАРАБОТАЛИ С КУРСА",
+    reviews: "ОТЗЫВЫ УЧЕНИКОВ",
     views: "ПРОСМОТРЫ",
     faq: "ОТВЕТЫ НА ВОПРОСЫ",
     contact: "КОНТАКТЫ",
@@ -180,6 +181,9 @@ export const ruDictionary: LocaleDictionary = {
     instagram: "Instagram",
     languageRu: "РУ",
     languageTj: "ТОҶ",
+    reviewsSubtitle: "Реальные истории учеников — нажмите на видео, чтобы посмотреть",
+    playReview: "Смотреть отзыв",
+    closeReview: "Закрыть",
   },
   navLinks: [
     { label: "Программа", href: LINKS.program },
