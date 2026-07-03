@@ -68,23 +68,21 @@ function ContactCard({
   href?: string;
 }) {
   const className =
-    "group flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-5 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:p-6";
+    "group flex items-center gap-4 rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]";
 
   const inner = (
     <>
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange-gradient text-white">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-gradient text-white">
         <ContactIcon type={icon} />
       </div>
       <div className="min-w-0 flex-1">
-        <p className="font-[family-name:var(--font-oswald)] text-[11px] font-semibold uppercase tracking-[0.18em] text-[#ff9652]">
+        <p className="font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-[0.18em] text-[#ff9652]">
           {label}
         </p>
-        <p className="mt-1 break-all font-[family-name:var(--font-inter)] text-base font-semibold text-white sm:text-lg">
+        <p className="mt-0.5 break-all font-[family-name:var(--font-inter)] text-[15px] font-semibold text-white">
           {value}
         </p>
-        <p className="mt-1 font-[family-name:var(--font-inter)] text-xs leading-relaxed text-gray sm:text-sm">
-          {hint}
-        </p>
+        <p className="mt-0.5 font-[family-name:var(--font-inter)] text-xs text-gray/80">{hint}</p>
       </div>
     </>
   );
@@ -111,39 +109,6 @@ function ContactCard({
   );
 }
 
-function ExpertContactRow({
-  icon,
-  label,
-  value,
-  href,
-}: {
-  icon: ContactIconType;
-  label: string;
-  value: string;
-  href: string;
-}) {
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.04] px-4 py-3 transition-colors hover:border-white/15 hover:bg-white/[0.07]"
-    >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-gradient text-white">
-        <ContactIcon type={icon} />
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[#ff9652]">
-          {label}
-        </span>
-        <span className="mt-0.5 block truncate font-[family-name:var(--font-inter)] text-sm font-medium text-white">
-          {value}
-        </span>
-      </span>
-    </a>
-  );
-}
-
 export function ContactSection() {
   const { sectionTitles, contactSection, experts } = useContent();
   const expert = experts[0];
@@ -163,8 +128,8 @@ export function ContactSection() {
         </p>
       </SectionReveal>
 
-      <div className="relative z-10 mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_380px] lg:items-start lg:gap-10 xl:grid-cols-[1fr_420px]">
-        <SectionReveal delay={0.1} className="space-y-4">
+      <div className="relative z-10 mt-12 grid gap-8 lg:mt-16 lg:grid-cols-[1fr_320px] lg:items-stretch lg:gap-10 xl:grid-cols-[1fr_360px]">
+        <SectionReveal delay={0.1} className="grid gap-3 sm:grid-cols-2 sm:gap-4">
           <ContactCard
             icon="phone"
             label={contactSection.phoneLabel}
@@ -187,64 +152,39 @@ export function ContactSection() {
             href={contactSection.emailHref}
           />
           <ContactCard
-            icon="location"
-            label={contactSection.locationLabel}
-            value={contactSection.locationValue}
-            hint={contactSection.responseTime}
+            icon="instagram"
+            label={contactSection.instagramLabel}
+            value={contactSection.instagramHandle}
+            hint={contactSection.instagramHint}
+            href={contactSection.instagramUrl}
           />
         </SectionReveal>
 
         <SectionReveal delay={0.2}>
-          <div className="overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02]">
-            <div className="relative h-[200px] w-full sm:h-[220px]">
+          <div className="flex h-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-[#0d0d0d]">
+            <div className="relative min-h-[280px] flex-1 sm:min-h-[320px]">
               <Image
                 src={expert?.image ?? "/images/experts/murad.jpg"}
                 alt={expert?.name ?? "PROSMM"}
                 fill
-                sizes="(max-width: 1024px) 100vw, 420px"
+                sizes="(max-width: 1024px) 100vw, 360px"
                 className="object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="font-[family-name:var(--font-oswald)] text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ff9652]">
-                  {contactSection.expertCardTitle}
-                </p>
-                <h3 className="mt-1 font-[family-name:var(--font-bebas)] text-3xl tracking-wide text-white">
-                  {expert?.name}
-                </h3>
-                <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-gray">
-                  {expert?.role}
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
             </div>
 
-            <div className="space-y-2.5 p-5">
-              <ExpertContactRow
-                icon="phone"
-                label={contactSection.phoneLabel}
-                value={contactSection.phone}
-                href={contactSection.phoneHref}
-              />
-              <ExpertContactRow
-                icon="whatsapp"
-                label={contactSection.whatsappLabel}
-                value={contactSection.whatsapp}
-                href={contactSection.whatsappHref}
-              />
-              <ExpertContactRow
-                icon="email"
-                label={contactSection.emailLabel}
-                value={contactSection.email}
-                href={contactSection.emailHref}
-              />
-              <ExpertContactRow
-                icon="instagram"
-                label={contactSection.instagramLabel}
-                value={contactSection.instagramHandle}
-                href={contactSection.instagramUrl}
-              />
-              <p className="pt-2 text-center font-[family-name:var(--font-inter)] text-[11px] text-gray/70 sm:text-xs">
-                {contactSection.responseTime}
+            <div className="border-t border-white/8 px-5 py-5">
+              <p className="font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ff9652]">
+                {contactSection.expertCardTitle}
+              </p>
+              <h3 className="mt-1 font-[family-name:var(--font-bebas)] text-[2rem] leading-none tracking-wide text-white">
+                {expert?.name}
+              </h3>
+              <p className="mt-2 font-[family-name:var(--font-inter)] text-sm leading-relaxed text-gray">
+                {expert?.role}
+              </p>
+              <p className="mt-3 font-[family-name:var(--font-inter)] text-xs text-gray/70">
+                {contactSection.locationLabel}: {contactSection.locationValue}
               </p>
             </div>
           </div>
