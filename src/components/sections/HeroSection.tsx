@@ -98,10 +98,9 @@ export function HeroSection() {
               {heroData.subtitleLine2}
             </p>
 
-            <LessonCtaButton
-              label={heroData.lessonCta}
-              className="mt-6 hidden sm:mt-8 lg:inline-flex"
-            />
+            <div className="mt-6 hidden lg:block sm:mt-8">
+              <LessonCtaButton label={heroData.lessonCta} />
+            </div>
           </motion.div>
 
           <motion.div
@@ -130,10 +129,9 @@ export function HeroSection() {
               <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black/50 to-transparent" />
             </motion.div>
 
-            <LessonCtaButton
-              label={heroData.lessonCta}
-              className="mx-auto mt-5 flex w-full max-w-[320px] justify-center lg:hidden"
-            />
+            <div className="mx-auto mt-5 w-full max-w-[320px] lg:hidden">
+              <LessonCtaButton label={heroData.lessonCta} className="w-full justify-center" />
+            </div>
           </motion.div>
 
           <motion.div
