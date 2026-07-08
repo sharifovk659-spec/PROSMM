@@ -10,7 +10,6 @@ import type {
   ProgramModule,
   SocialLink,
   StarPosition,
-  ViewSlide,
 } from "./types";
 
 export const sectionTitles = {
@@ -20,7 +19,6 @@ export const sectionTitles = {
   program: "ПРОГРАММА ОБУЧЕНИЯ",
   pricing: "ТАРИФЫ КУРСА",
   earnings: "ЗАРАБОТАЛИ С КУРСА",
-  views: "ПРОСМОТРЫ",
   faq: "ОТВЕТЫ НА ВОПРОСЫ",
 } as const;
 
@@ -35,8 +33,6 @@ export const uiLabels = {
   hideModules: "СКРЫТЬ МОДУЛИ",
   purchase: "ПРИОБРЕСТИ",
   bestChoice: "ЛУЧШИЙ ВЫБОР",
-  viewsCount: "просмотров",
-  smmTag: "SMM",
   folderLessons: "2 урока",
   footerInfo: "ИНФОРМАЦИЯ",
   footerDocs: "ДОКУМЕНТЫ",
@@ -449,34 +445,6 @@ export const earners: Earner[] = [
   { username: "@diana_smm", amount: "72.000 RUB", avatar: "/images/earnings/avatar-10.jpg" },
   { username: "@timur", amount: "33.000 RUB", avatar: "/images/earnings/avatar-11.jpg" },
   { username: "@sabina", amount: "55.000 RUB", avatar: "/images/earnings/avatar-12.jpg" },
-];
-
-export const viewSlides: ViewSlide[] = [
-  {
-    views: "4.2M",
-    label: "SMM Натальи Шульман",
-    screens: ["/images/views/screen-1.svg", "/images/views/screen-2.svg"],
-  },
-  {
-    views: "1.8M",
-    label: "SMM из подкаста",
-    screens: ["/images/views/screen-3.svg"],
-  },
-  {
-    views: "890K",
-    label: "Pianobar — SMM под ключ",
-    screens: ["/images/views/screen-4.svg", "/images/views/screen-5.svg"],
-  },
-  {
-    views: "650K",
-    label: "Driveo — салон авто",
-    screens: ["/images/views/screen-6.svg"],
-  },
-  {
-    views: "421K",
-    label: "Подкаст Валерия Якубцевича",
-    screens: ["/images/views/screen-7.svg", "/images/views/screen-8.svg"],
-  },
 ];
 
 export const faqItems: FaqItem[] = [

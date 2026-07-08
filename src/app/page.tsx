@@ -10,7 +10,6 @@ import {
   LessonsBannerSection,
   EarningsSection,
   VideoReviewsSection,
-  ViewsSection,
   FaqSection,
   ContactSection,
 } from "@/components/sections";
@@ -23,14 +22,13 @@ export default function Home() {
       <main className="relative bg-black">
         <HeroSection />
         <CourseBenefitsSection />
+        <VideoReviewsSection />
         <TargetAudienceSection />
         <ExpertsSection />
         <ProgramSection />
         <PricingSection />
         <LessonsBannerSection />
         <EarningsSection />
-        <VideoReviewsSection />
-        <ViewsSection />
         <FaqSection />
         <ContactSection />
       </main>

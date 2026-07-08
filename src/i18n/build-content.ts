@@ -2,7 +2,6 @@ import type {
   Earner,
   SocialLink,
   StarPosition,
-  ViewSlide,
 } from "@/data/types";
 import type { Locale, LocaleDictionary } from "./types";
 import {
@@ -14,7 +13,6 @@ import {
   LINKS,
   SOCIAL_LINKS,
   VIDEO_REVIEWS,
-  VIEW_SCREENS,
 } from "./static";
 import { ruDictionary } from "./ru";
 import { tjDictionary } from "./tj";
@@ -74,7 +72,6 @@ export interface SiteContent {
     instagramUrl: string;
     instagramHandle: string;
   };
-  viewSlides: ViewSlide[];
   faqItems: LocaleDictionary["faqItems"];
   footerInfoLinks: LocaleDictionary["footerInfoLinks"];
   footerDocLinks: LocaleDictionary["footerDocLinks"];
@@ -140,10 +137,6 @@ export function buildContent(locale: Locale): SiteContent {
       instagramUrl: LINKS.instagram,
       instagramHandle: EXPERT_STATIC.instagram,
     },
-    viewSlides: dict.viewSlides.map((slide, index) => ({
-      ...slide,
-      screens: [...(VIEW_SCREENS[index] ?? [])],
-    })),
     faqItems: dict.faqItems,
     footerInfoLinks: dict.footerInfoLinks,
     footerDocLinks: dict.footerDocLinks,

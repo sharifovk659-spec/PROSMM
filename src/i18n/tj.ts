@@ -155,7 +155,6 @@ export const tjDictionary: LocaleDictionary = {
     pricing: "ТАРИФҲОИ КУРС",
     earnings: "АЗ КУРС ДАРОМОД КАРДАНД",
     reviews: "ФИКРҲОИ ДОНИШҶӮЁН",
-    views: "ТАМАШОҲО",
     faq: "ҶАВОБ БА САВОЛҲО",
     contact: "ТАМОС",
   },
@@ -170,8 +169,6 @@ export const tjDictionary: LocaleDictionary = {
     hideModules: "ПИНҲОН КАРДАНИ МОДУЛҲО",
     purchase: "ХАРИДОРИ",
     bestChoice: "БЕҲТАРИН ИНТИХОБ",
-    viewsCount: "тамошо",
-    smmTag: "SMM",
     folderLessons: "2 дарс",
     footerInfo: "МАЪЛУМОТ",
     footerDocs: "ҲУҶҶАТҲО",
@@ -390,13 +387,6 @@ export const tjDictionary: LocaleDictionary = {
     subtitle: "2 дарси ройгон аз созандаи PROSMM — мустақиман дар сайт ройгон тамошо кунед",
     ctaText: "ДАРС МЕХОХАМ",
   },
-  viewSlides: [
-    { views: "4.2M", label: "SMM-и Наталия Шулман" },
-    { views: "1.8M", label: "SMM аз подкаст" },
-    { views: "890K", label: "Pianobar — SMM зери калид" },
-    { views: "650K", label: "Driveo — салони мошин" },
-    { views: "421K", label: "Подкасти Валерий Якубцевич" },
-  ],
   faqItems: [
     {
       question: "Оё iPhone лозим аст?",

@@ -155,7 +155,6 @@ export const ruDictionary: LocaleDictionary = {
     pricing: "ТАРИФЫ КУРСА",
     earnings: "ЗАРАБОТАЛИ С КУРСА",
     reviews: "ОТЗЫВЫ УЧЕНИКОВ",
-    views: "ПРОСМОТРЫ",
     faq: "ОТВЕТЫ НА ВОПРОСЫ",
     contact: "КОНТАКТЫ",
   },
@@ -170,8 +169,6 @@ export const ruDictionary: LocaleDictionary = {
     hideModules: "СКРЫТЬ МОДУЛИ",
     purchase: "ПРИОБРЕСТИ",
     bestChoice: "ЛУЧШИЙ ВЫБОР",
-    viewsCount: "просмотров",
-    smmTag: "SMM",
     folderLessons: "2 урока",
     footerInfo: "ИНФОРМАЦИЯ",
     footerDocs: "ДОКУМЕНТЫ",
@@ -377,13 +374,6 @@ export const ruDictionary: LocaleDictionary = {
     subtitle: "2 бесплатных урока от создателя PROSMM — смотрите бесплатно прямо на сайте",
     ctaText: "ХОЧУ УРОКИ",
   },
-  viewSlides: [
-    { views: "4.2M", label: "SMM Натальи Шульман" },
-    { views: "1.8M", label: "SMM из подкаста" },
-    { views: "890K", label: "Pianobar — SMM под ключ" },
-    { views: "650K", label: "Driveo — салон авто" },
-    { views: "421K", label: "Подкаст Валерия Якубцевича" },
-  ],
   faqItems: [
     {
       question: "Нужно ли мне иметь iPhone?",

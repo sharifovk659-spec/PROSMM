@@ -57,14 +57,6 @@ export const VIDEO_REVIEWS = [
   { id: "r10", videoId: "QJ0NAFQ-y9Y", avatar: "/images/earnings/avatar-04.jpg", name: "@blog", result: "30.000 RUB" },
 ] as const;
 
-export const VIEW_SCREENS = [
-  ["/images/views/screen-1.svg", "/images/views/screen-2.svg"],
-  ["/images/views/screen-3.svg"],
-  ["/images/views/screen-4.svg", "/images/views/screen-5.svg"],
-  ["/images/views/screen-6.svg"],
-  ["/images/views/screen-7.svg", "/images/views/screen-8.svg"],
-] as const;
-
 export const SOCIAL_LINKS = [
   { name: "Instagram", href: LINKS.instagram },
   { name: "YouTube", href: LINKS.freeLessonUrl },

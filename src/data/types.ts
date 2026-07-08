@@ -66,12 +66,6 @@ export interface Earner {
   avatar: string;
 }
 
-export interface ViewSlide {
-  views: string;
-  label: string;
-  screens: string[];
-}
-
 export interface FaqItem {
   question: string;
   answer: string;

@@ -270,25 +270,69 @@ body {
 
 .reviews-marquee-wrap {
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
 }
 
 .reviews-marquee-track {
-  animation: reviews-marquee 48s linear infinite;
   will-change: transform;
 }
 
-.reviews-marquee-wrap:hover .reviews-marquee-track,
-.reviews-marquee-wrap.is-paused .reviews-marquee-track {
-  animation-play-state: paused;
+.contact-worm-link {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-@keyframes reviews-marquee {
-  from {
-    transform: translateX(0);
-  }
+.contact-worm-spin {
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 286deg,
+    rgba(255, 196, 110, 0.15) 300deg,
+    rgba(255, 214, 140, 0.95) 318deg,
+    rgba(255, 178, 88, 0.55) 334deg,
+    transparent 350deg,
+    transparent 360deg
+  );
+  animation: contact-worm-spin 2.9s linear infinite;
+}
+
+.contact-worm-face {
+  position: absolute;
+  inset: 2px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: #0c0c0c;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 0.6px, transparent 0.6px);
+  background-size: 5px 5px;
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.95),
+    inset 0 0 8px rgba(255, 170, 90, 0.06);
+  transition:
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact-worm-link:hover .contact-worm-face {
+  color: #fff;
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.95),
+    inset 0 0 10px rgba(255, 170, 90, 0.12);
+}
+
+@keyframes contact-worm-spin {
   to {
-    transform: translateX(-50%);
+    transform: rotate(360deg);
   }
 }
 
@@ -355,21 +399,6 @@ body {
     transparent 72%
   );
   pointer-events: none;
-}
-
-/* ── Swiper ── */
-.views-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background: #d4d4d4;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.views-swiper .swiper-pagination-bullet-active {
-  width: 24px;
-  border-radius: 4px;
-  background: var(--gradient-orange);
 }
 
 /* ── Scrollbar ── */

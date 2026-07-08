@@ -71,7 +71,6 @@ export interface LocaleDictionary {
     pricing: string;
     earnings: string;
     reviews: string;
-    views: string;
     faq: string;
     contact: string;
   };
@@ -85,8 +84,6 @@ export interface LocaleDictionary {
     hideModules: string;
     purchase: string;
     bestChoice: string;
-    viewsCount: string;
-    smmTag: string;
     folderLessons: string;
     footerInfo: string;
     footerDocs: string;
@@ -111,7 +108,6 @@ export interface LocaleDictionary {
   pricingPlans: PricingPlan[];
   lessonsBanner: LessonsBannerCopy;
   contactSection: ContactCopy;
-  viewSlides: { views: string; label: string }[];
   faqItems: FaqItem[];
   footerInfoLinks: FooterLink[];
   footerDocLinks: FooterLink[];
