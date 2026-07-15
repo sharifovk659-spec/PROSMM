@@ -158,7 +158,7 @@ export function PricingSection() {
   return (
     <SectionContainer
       id="pricing"
-      className="relative scroll-mt-28 bg-black !pb-16 sm:!pb-20 md:!pb-28"
+      className="relative scroll-mt-28 bg-black !pb-16 sm:!pb-20 md:!pb-24"
       maxWidth="xl"
     >
       <SectionReveal>

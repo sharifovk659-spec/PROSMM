@@ -446,6 +446,46 @@ body {
   }
 }
 
+.discount-top-bar {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.discount-top-shine {
+  animation: discount-top-shine 2.8s ease-in-out infinite;
+}
+
+.discount-percent-pulse {
+  animation: discount-percent-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes discount-top-shine {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  55% {
+    transform: translateX(280%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(280%);
+    opacity: 0;
+  }
+}
+
+@keyframes discount-percent-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
 .discount-bar {
   animation: discount-bar-glow 2.8s ease-in-out infinite;
 }
