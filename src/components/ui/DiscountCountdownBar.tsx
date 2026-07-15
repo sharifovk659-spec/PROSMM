@@ -34,11 +34,11 @@ function pad(n: number) {
 
 function TimeCell({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex min-w-[42px] flex-col items-center sm:min-w-[48px]">
-      <span className="font-[family-name:var(--font-bebas)] text-xl leading-none tracking-wide text-white sm:text-2xl">
+    <div className="flex min-w-[36px] flex-col items-center sm:min-w-[44px]">
+      <span className="font-[family-name:var(--font-bebas)] text-lg leading-none tracking-wide text-white sm:text-xl">
         {value}
       </span>
-      <span className="mt-0.5 font-[family-name:var(--font-oswald)] text-[8px] font-semibold uppercase tracking-[0.14em] text-white/55 sm:text-[9px]">
+      <span className="mt-0.5 font-[family-name:var(--font-oswald)] text-[7px] font-semibold uppercase tracking-[0.12em] text-white/55 sm:text-[8px]">
         {label}
       </span>
     </div>
@@ -60,13 +60,13 @@ export function DiscountCountdownBar() {
   if (time.expired) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[150] flex justify-center px-3 pb-3 sm:px-4 sm:pb-4">
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-[170] flex justify-center">
       <a
         href={DISCOUNT.href}
-        className="discount-bar pointer-events-auto flex w-full max-w-3xl items-center justify-between gap-3 rounded-2xl border border-[#ff9652]/40 bg-[#120c08]/95 px-3 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur-md sm:gap-5 sm:px-5 sm:py-3"
+        className="discount-bar pointer-events-auto flex w-full items-center justify-between gap-2 border-b border-[#ff9652]/35 bg-[#120c08]/96 px-3 py-2 shadow-[0_8px_28px_rgba(0,0,0,0.45)] backdrop-blur-md sm:gap-4 sm:px-6 sm:py-2.5"
       >
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <span className="inline-flex items-center justify-center rounded-xl bg-orange-gradient px-2.5 py-1.5 font-[family-name:var(--font-bebas)] text-lg leading-none tracking-wide text-white sm:px-3 sm:text-xl">
+          <span className="inline-flex items-center justify-center rounded-lg bg-orange-gradient px-2 py-1 font-[family-name:var(--font-bebas)] text-base leading-none tracking-wide text-white sm:rounded-xl sm:px-2.5 sm:py-1.5 sm:text-lg">
             −{DISCOUNT.percent}%
           </span>
           <span className="hidden font-[family-name:var(--font-oswald)] text-[11px] font-semibold uppercase tracking-[0.12em] text-[#ffb07a] sm:inline sm:text-xs">
@@ -74,17 +74,17 @@ export function DiscountCountdownBar() {
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
+        <div className="flex items-center gap-1 sm:gap-2">
           <TimeCell value={pad(time.days)} label={uiLabels.discountDays} />
-          <span className="pb-3 font-[family-name:var(--font-bebas)] text-lg text-[#ff9652]/70">:</span>
+          <span className="pb-2.5 font-[family-name:var(--font-bebas)] text-base text-[#ff9652]/70">:</span>
           <TimeCell value={pad(time.hours)} label={uiLabels.discountHours} />
-          <span className="pb-3 font-[family-name:var(--font-bebas)] text-lg text-[#ff9652]/70">:</span>
+          <span className="pb-2.5 font-[family-name:var(--font-bebas)] text-base text-[#ff9652]/70">:</span>
           <TimeCell value={pad(time.minutes)} label={uiLabels.discountMinutes} />
-          <span className="pb-3 font-[family-name:var(--font-bebas)] text-lg text-[#ff9652]/70">:</span>
+          <span className="pb-2.5 font-[family-name:var(--font-bebas)] text-base text-[#ff9652]/70">:</span>
           <TimeCell value={pad(time.seconds)} label={uiLabels.discountSeconds} />
         </div>
 
-        <span className="hidden shrink-0 rounded-full border border-[#ff9652]/45 px-3 py-1.5 font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-[0.14em] text-white sm:inline-flex">
+        <span className="shrink-0 rounded-full border border-[#ff9652]/45 px-2.5 py-1 font-[family-name:var(--font-oswald)] text-[9px] font-semibold uppercase tracking-[0.12em] text-white sm:px-3 sm:py-1.5 sm:text-[10px]">
           {uiLabels.discountCta}
         </span>
       </a>

@@ -67,13 +67,13 @@ export function HeroSection() {
 
       <FloatingStars />
 
-      <div className="pointer-events-none absolute right-4 top-6 z-50 hidden lg:block">
+      <div className="pointer-events-none absolute right-4 top-[4.5rem] z-50 hidden lg:block">
         <div className="pointer-events-auto">
           <LanguageSwitcher />
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col section-padding-inline pb-8 pt-24 sm:pb-10 sm:pt-28 lg:pb-12">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col section-padding-inline pb-8 pt-28 sm:pb-10 sm:pt-32 lg:pb-12 lg:pt-28">
         <div className="grid flex-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)_minmax(0,1fr)] lg:items-center lg:gap-6 xl:gap-10">
           <motion.div
             custom={0}
