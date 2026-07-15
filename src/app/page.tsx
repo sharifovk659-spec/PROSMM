@@ -21,12 +21,12 @@ export default function Home() {
       <main className="relative bg-black">
         <HeroSection />
         <PricingSection />
+        <LessonsBannerSection />
         <CourseBenefitsSection />
         <VideoReviewsSection />
         <TargetAudienceSection />
         <ExpertsSection />
         <ProgramSection />
-        <LessonsBannerSection />
         <FaqSection />
         <ContactSection />
       </main>
