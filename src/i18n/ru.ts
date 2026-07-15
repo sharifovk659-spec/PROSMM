@@ -145,10 +145,11 @@ export const ruDictionary: LocaleDictionary = {
     discountMinutes: "мин",
     discountSeconds: "сек",
     discountCta: "Тарифы",
+    pricingSwipe: "Листайте",
   },
   navLinks: [
-    { label: "Программа", href: LINKS.program },
     { label: "Тарифы", href: LINKS.pricing },
+    { label: "Программа", href: LINKS.program },
     { label: "Эксперты", href: LINKS.experts },
     { label: "FAQ", href: LINKS.faq },
     { label: "Контакты", href: LINKS.contact },

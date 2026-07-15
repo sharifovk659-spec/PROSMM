@@ -145,10 +145,11 @@ export const tjDictionary: LocaleDictionary = {
     discountMinutes: "дақ",
     discountSeconds: "сок",
     discountCta: "Тарифҳо",
+    pricingSwipe: "Кашида гузаред",
   },
   navLinks: [
-    { label: "Барнома", href: LINKS.program },
     { label: "Тарифҳо", href: LINKS.pricing },
+    { label: "Барнома", href: LINKS.program },
     { label: "Экспертҳо", href: LINKS.experts },
     { label: "FAQ", href: LINKS.faq },
     { label: "Тамос", href: LINKS.contact },

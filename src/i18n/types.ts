@@ -103,6 +103,7 @@ export interface LocaleDictionary {
     discountMinutes: string;
     discountSeconds: string;
     discountCta: string;
+    pricingSwipe: string;
   };
   navLinks: NavLink[];
   heroFeatures: HeroFeature[];
