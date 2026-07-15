@@ -11,7 +11,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 type ReviewItem = {
   id: string;
+  platform: "youtube" | "instagram";
   videoId: string;
+  url: string;
   avatar: string;
   name: string;
   result: string;
@@ -38,8 +40,13 @@ function ReviewCard({
   onOpen: (review: ReviewItem) => void;
   playLabel: string;
 }) {
-  const thumb = `https://img.youtube.com/vi/${review.videoId}/hqdefault.jpg`;
-  const previewSrc = `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${review.videoId}`;
+  const isYouTube = review.platform === "youtube";
+  const thumb = isYouTube
+    ? `https://img.youtube.com/vi/${review.videoId}/hqdefault.jpg`
+    : null;
+  const previewSrc = isYouTube
+    ? `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${review.videoId}`
+    : null;
 
   return (
     <button
@@ -54,14 +61,14 @@ function ReviewCard({
       }`}
       aria-label={`${playLabel}: ${review.name}`}
     >
-      {isHovered ? (
+      {isHovered && previewSrc ? (
         <iframe
           src={previewSrc}
           title={review.name}
           className="pointer-events-none absolute inset-0 h-full w-full scale-[1.02] object-cover"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-      ) : (
+      ) : thumb ? (
         <Image
           src={thumb}
           alt={review.name}
@@ -69,6 +76,8 @@ function ReviewCard({
           sizes="165px"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
+      ) : (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#ff7a2f55,transparent_45%),linear-gradient(160deg,#1a1a1a,#0d0d0d)]" />
       )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
@@ -163,7 +172,10 @@ function ReviewModal({
     };
   }, [onClose]);
 
-  const embedSrc = `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  const embedSrc =
+    review.platform === "youtube"
+      ? `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
+      : `https://www.instagram.com/reel/${review.videoId}/embed`;
 
   return (
     <motion.div
@@ -220,13 +232,23 @@ function ReviewModal({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-full border border-white/15 px-4 py-2 font-[family-name:var(--font-oswald)] text-[11px] uppercase tracking-wider text-white/80 transition-colors hover:border-white/30 hover:text-white"
-          >
-            {closeLabel}
-          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            <a
+              href={review.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 px-3 py-2 font-[family-name:var(--font-oswald)] text-[11px] uppercase tracking-wider text-white/80 transition-colors hover:border-white/30 hover:text-white"
+            >
+              Open
+            </a>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full border border-white/15 px-4 py-2 font-[family-name:var(--font-oswald)] text-[11px] uppercase tracking-wider text-white/80 transition-colors hover:border-white/30 hover:text-white"
+            >
+              {closeLabel}
+            </button>
+          </div>
         </div>
       </motion.div>
     </motion.div>

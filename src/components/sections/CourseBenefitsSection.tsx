@@ -61,7 +61,7 @@ function BenefitCard({
         </div>
       </div>
 
-      <p className="max-w-[200px] text-center font-[family-name:var(--font-inter)] text-xs leading-relaxed text-white sm:max-w-[220px] sm:text-sm md:max-w-[240px] md:text-[15px]">
+      <p className="max-w-[220px] text-center font-[family-name:var(--font-inter)] text-xs leading-relaxed text-white sm:max-w-[240px] sm:text-sm md:max-w-[260px] md:text-[15px]">
         {parts.map((part, i) =>
           part.bold ? (
             <strong key={i} className="font-bold text-white">
@@ -78,8 +78,8 @@ function BenefitCard({
 
 export function CourseBenefitsSection() {
   const { courseBenefits, sectionTitles } = useContent();
-  const topRow = courseBenefits.slice(0, 3);
-  const bottomRow = courseBenefits.slice(3, 5);
+  const topRow = courseBenefits.slice(0, 2);
+  const bottomRow = courseBenefits.slice(2, 4);
 
   return (
     <SectionContainer className="relative overflow-hidden bg-black" maxWidth="lg">
@@ -103,21 +103,20 @@ export function CourseBenefitsSection() {
         </div>
 
         <div className="mt-12 hidden sm:grid sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12 lg:hidden">
-          {courseBenefits.slice(0, 4).map((item, i) => (
+          {courseBenefits.map((item, i) => (
             <BenefitCard key={i} {...item} index={i} />
           ))}
-          <BenefitCard {...courseBenefits[4]} index={4} className="col-span-2 justify-self-center" />
         </div>
 
         <div className="mt-14 hidden flex-col items-center gap-14 lg:flex">
-          <div className="grid w-full max-w-4xl grid-cols-3 gap-10 xl:max-w-5xl xl:gap-14">
+          <div className="grid w-full max-w-3xl grid-cols-2 gap-14 xl:max-w-4xl xl:gap-20">
             {topRow.map((item, i) => (
               <BenefitCard key={i} {...item} index={i} />
             ))}
           </div>
-          <div className="grid w-full max-w-2xl grid-cols-2 gap-14 xl:max-w-3xl xl:gap-20">
+          <div className="grid w-full max-w-3xl grid-cols-2 gap-14 xl:max-w-4xl xl:gap-20">
             {bottomRow.map((item, i) => (
-              <BenefitCard key={i} {...item} index={i + 3} />
+              <BenefitCard key={i} {...item} index={i + 2} />
             ))}
           </div>
         </div>

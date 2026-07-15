@@ -96,6 +96,7 @@ export interface LocaleDictionary {
     reviewsSubtitle: string;
     playReview: string;
     closeReview: string;
+    clickHint: string;
   };
   navLinks: NavLink[];
   heroFeatures: HeroFeature[];

@@ -78,7 +78,9 @@ export interface SiteContent {
   earners: Earner[];
   videoReviews: {
     id: string;
+    platform: "youtube" | "instagram";
     videoId: string;
+    url: string;
     avatar: string;
     name: string;
     result: string;
@@ -123,7 +125,7 @@ export function buildContent(locale: Locale): SiteContent {
     pricingPlans: dict.pricingPlans,
     lessonsBanner: {
       ...dict.lessonsBanner,
-      expert: { image: ASSETS.expertImage, name: dict.experts[0]?.name ?? "" },
+      expert: { image: ASSETS.lessonsBannerImage, name: dict.experts[0]?.name ?? "" },
       phoneScreen: ASSETS.lessonsPhoneScreen,
     },
     contactSection: {

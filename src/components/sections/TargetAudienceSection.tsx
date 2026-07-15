@@ -22,7 +22,7 @@ const cardFade = {
 };
 
 function CardIcon({ index }: { index: number }) {
-  const className = "h-3.5 w-3.5 text-black/70";
+  const className = "h-3 w-3 text-black/70";
 
   if (index === 0) {
     return (
@@ -44,46 +44,16 @@ function CardIcon({ index }: { index: number }) {
       </svg>
     );
   }
-  if (index === 2) {
-    return (
-      <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden>
-        <path
-          d="M4 14l3-8h6l3 8M7 10h6"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M8 6l1-2h2l1 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (index === 3) {
-    return (
-      <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden>
-        <path
-          d="M10 4.5c-2.2 0-4 1.2-4 3s1.8 3 4 3 4-1.2 4-3-1.8-3-4-3z"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-        <path
-          d="M6.5 10.5L8 16h4l1.5-5.5"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
   return (
     <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden>
       <path
-        d="M6 14l2-6h4l2 6M8 10h4"
+        d="M4 14l3-8h6l3 8M7 10h6"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+      <path d="M8 6l1-2h2l1 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -99,7 +69,7 @@ function FreeLessonsPhones() {
         alt="Instagram профили экспертов"
         width={160}
         height={100}
-        className="h-[80px] w-auto max-w-[140px] object-contain object-left sm:h-[92px] sm:max-w-[160px]"
+        className="h-[72px] w-auto max-w-[130px] object-contain object-left sm:h-[84px] sm:max-w-[150px]"
         loading="eager"
         decoding="async"
       />
@@ -122,29 +92,29 @@ function AudienceCard({
       viewport={{ once: true, margin: "-40px" }}
       variants={cardFade}
       whileHover={{ y: -3, transition: { duration: 0.22 } }}
-      className="flex h-full min-h-[148px] overflow-hidden rounded-[18px] bg-[#ececec] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] sm:min-h-[160px] sm:rounded-[20px]"
+      className="flex h-full min-h-[128px] overflow-hidden rounded-[16px] bg-[#ececec] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] sm:min-h-[136px] sm:rounded-[18px]"
     >
-      <div className="relative w-[40%] shrink-0 bg-[#ff8a4c] sm:w-[42%]">
-        <div className="relative h-full min-h-[148px] w-full sm:min-h-[160px]">
+      <div className="relative w-[34%] shrink-0 bg-[#ff8a4c] sm:w-[36%]">
+        <div className="relative h-full min-h-[128px] w-full sm:min-h-[136px]">
           <Image
             src={item.image}
             alt={item.title}
             fill
             quality={90}
-            sizes="(max-width: 640px) 42vw, 220px"
+            sizes="(max-width: 640px) 34vw, 180px"
             className="object-cover object-top"
           />
         </div>
-        <div className="absolute bottom-2 left-2 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm sm:bottom-2.5 sm:left-2.5 sm:h-8 sm:w-8">
+        <div className="absolute bottom-2 left-2 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm sm:h-7 sm:w-7">
           <CardIcon index={index} />
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col justify-center px-3.5 py-4 sm:px-4 sm:py-5 md:px-5">
-        <h3 className="font-[family-name:var(--font-inter)] text-[13px] font-bold leading-snug text-black sm:text-[15px] md:text-base">
+      <div className="flex flex-1 flex-col justify-center px-3 py-3 sm:px-3.5 sm:py-4 md:px-4">
+        <h3 className="font-[family-name:var(--font-inter)] text-[12px] font-bold leading-snug text-black sm:text-[13px] md:text-sm">
           {item.title}
         </h3>
-        <p className="mt-2 font-[family-name:var(--font-inter)] text-[11px] leading-relaxed text-black/55 sm:text-xs md:text-sm">
+        <p className="mt-1.5 font-[family-name:var(--font-inter)] text-[10px] leading-relaxed text-black/55 sm:text-[11px] md:text-xs">
           {item.description}
         </p>
       </div>
@@ -153,41 +123,35 @@ function AudienceCard({
 }
 
 export function TargetAudienceSection() {
-  const { audienceAssets, sectionTitles, targetAudience, uiLabels } = useContent();
+  const { sectionTitles, targetAudience, uiLabels } = useContent();
 
   return (
     <SectionContainer className="relative bg-black" maxWidth="sm">
       <SectionReveal>
-        <div className="relative px-1 pt-6 sm:pt-8">
-          <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
-            <OpenLessonsButton className="!px-8 !py-3.5 shadow-[0_8px_28px_rgba(0,0,0,0.35)]">
-              {uiLabels.getLessons}
-            </OpenLessonsButton>
-          </div>
-
-          <div className="overflow-hidden rounded-[28px] bg-white pt-16 shadow-[0_4px_32px_rgba(0,0,0,0.12)] sm:rounded-[32px] sm:pt-[4.5rem]">
+        <div className="relative px-1 pt-2 sm:pt-4">
+          <div className="overflow-hidden rounded-[28px] bg-white pt-10 shadow-[0_4px_32px_rgba(0,0,0,0.12)] sm:rounded-[32px] sm:pt-12">
             <h2 className="px-6 text-center font-[family-name:var(--font-bebas)] text-3xl leading-tight tracking-wide text-black sm:px-10 sm:text-4xl md:text-5xl">
               {sectionTitles.audience}
             </h2>
 
-            <div className="mt-8 grid grid-cols-1 items-stretch gap-4 px-5 sm:grid-cols-2 sm:gap-5 sm:px-8 md:gap-6 md:px-10">
+            <div className="mt-7 grid grid-cols-1 items-stretch gap-3 px-5 sm:mt-8 sm:grid-cols-2 sm:gap-4 sm:px-8 md:px-10">
               {targetAudience.map((item, i) => (
                 <AudienceCard key={item.title} item={item} index={i} />
               ))}
             </div>
 
-            <div className="mt-6 grid grid-cols-1 items-center gap-5 rounded-b-[28px] bg-gradient-to-r from-[#fff4c9] via-[#fff0bf] to-[#ffe9a8] px-5 py-7 sm:mt-8 sm:grid-cols-[minmax(130px,160px)_1fr_auto] sm:items-center sm:gap-6 sm:px-8 sm:py-8 md:grid-cols-[minmax(150px,180px)_1fr_auto] md:gap-8 md:px-10">
+            <div className="mt-5 grid grid-cols-1 items-center gap-4 rounded-b-[28px] bg-gradient-to-r from-[#fff4c9] via-[#fff0bf] to-[#ffe9a8] px-5 py-6 sm:mt-6 sm:grid-cols-[minmax(120px,150px)_1fr_auto] sm:gap-5 sm:px-8 sm:py-7 md:px-10">
               <FreeLessonsPhones />
 
-              <p className="max-w-sm justify-self-center text-center font-[family-name:var(--font-inter)] text-sm leading-relaxed text-black sm:max-w-none sm:justify-self-stretch sm:text-left sm:text-[15px]">
+              <p className="max-w-xl justify-self-center text-center font-[family-name:var(--font-inter)] text-xs leading-relaxed text-black sm:max-w-none sm:justify-self-stretch sm:text-left sm:text-sm">
                 {uiLabels.audienceStrip}
               </p>
 
               <div className="flex shrink-0 flex-col items-center gap-2">
-                <OpenLessonsButton className="!px-6 !py-3.5 sm:!px-8">
+                <OpenLessonsButton className="!px-5 !py-3 sm:!px-7">
                   {uiLabels.getLessons}
                 </OpenLessonsButton>
-                <span className="rounded-md bg-white px-4 py-1 font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-widest text-black sm:text-xs">
+                <span className="rounded-md bg-white px-3 py-1 font-[family-name:var(--font-oswald)] text-[10px] font-semibold uppercase tracking-widest text-black sm:text-xs">
                   {uiLabels.fromExperts}
                 </span>
               </div>

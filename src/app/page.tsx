@@ -8,7 +8,6 @@ import {
   ProgramSection,
   PricingSection,
   LessonsBannerSection,
-  EarningsSection,
   VideoReviewsSection,
   FaqSection,
   ContactSection,
@@ -28,7 +27,6 @@ export default function Home() {
         <ProgramSection />
         <PricingSection />
         <LessonsBannerSection />
-        <EarningsSection />
         <FaqSection />
         <ContactSection />
       </main>
