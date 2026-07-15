@@ -243,15 +243,15 @@ export const tjDictionary: LocaleDictionary = {
   experts: [
     {
       name: EXPERT_STATIC.name,
-      role: "Асосгузори PROSMM · Эксперт оид ба монетизатсияи SMM",
+      role: "Асосгузори курси PRO SMM — експерти SMM ва бизнес дар интернет",
       instagram: EXPERT_STATIC.instagram,
       instagramUrl: EXPERT_STATIC.instagramUrl,
       image: EXPERT_STATIC.image,
       achievements: [
-        "96+ млн тамошо дар беҳтарин SMM",
-        "3000+ муаллифи контентро омӯзондааст",
-        "7 студияи шахсии суратбардорӣ",
-        "Маъруф дар конференсияҳои калони SMM",
+        "700+ Шогирдони курс",
+        "2 Бизнеси сердаромади худ",
+        "1000+ Бизнесҳои пешбурда",
+        "49 ҳазор подписчик",
       ],
     },
   ],

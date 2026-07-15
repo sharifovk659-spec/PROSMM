@@ -181,15 +181,15 @@ export const targetAudience: AudienceItem[] = [
 export const experts: Expert[] = [
   {
     name: "НИГМАТОВ ИЛХОМ",
-    role: "Основатель PROSMM · Эксперт по монетизации SMM",
+    role: "Асосгузори курси PRO SMM — експерти SMM ва бизнес дар интернет",
     instagram: "@ilhom.smm",
     instagramUrl: "https://www.instagram.com/ilhom.smm/",
     image: "/images/experts/murad.jpg",
     achievements: [
-      "96+ млн просмотров на лучшем SMM",
-      "Обучил 3 000+ авторов контента",
-      "7 собственных студий для съёмок",
-      "Спикер на крупнейших SMM-конференциях",
+      "700+ Шогирдони курс",
+      "2 Бизнеси сердаромади худ",
+      "1000+ Бизнесҳои пешбурда",
+      "49 ҳазор подписчик",
     ],
   },
 ];

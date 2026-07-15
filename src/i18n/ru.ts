@@ -231,15 +231,15 @@ export const ruDictionary: LocaleDictionary = {
   experts: [
     {
       name: EXPERT_STATIC.name,
-      role: "Основатель PROSMM · Эксперт по монетизации SMM",
+      role: "Основатель курса PRO SMM — эксперт по SMM и бизнесу в интернете",
       instagram: EXPERT_STATIC.instagram,
       instagramUrl: EXPERT_STATIC.instagramUrl,
       image: EXPERT_STATIC.image,
       achievements: [
-        "96+ млн просмотров на лучшем SMM",
-        "Обучил 3 000+ авторов контента",
-        "7 собственных студий для съёмок",
-        "Спикер на крупнейших SMM-конференциях",
+        "700+ учеников курса",
+        "2 собственных доходных бизнеса",
+        "1000+ продвинутых бизнесов",
+        "49 тысяч подписчиков",
       ],
     },
   ],
