@@ -139,6 +139,12 @@ export const tjDictionary: LocaleDictionary = {
     playReview: "Отзивро тамошо кунед",
     closeReview: "Пӯшидан",
     clickHint: "Зер кунед",
+    discountTitle: "Тахфиф −50%",
+    discountDays: "рӯз",
+    discountHours: "соат",
+    discountMinutes: "дақ",
+    discountSeconds: "сок",
+    discountCta: "Тарифҳо",
   },
   navLinks: [
     { label: "Барнома", href: LINKS.program },

@@ -97,6 +97,12 @@ export interface LocaleDictionary {
     playReview: string;
     closeReview: string;
     clickHint: string;
+    discountTitle: string;
+    discountDays: string;
+    discountHours: string;
+    discountMinutes: string;
+    discountSeconds: string;
+    discountCta: string;
   };
   navLinks: NavLink[];
   heroFeatures: HeroFeature[];

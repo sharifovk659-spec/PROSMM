@@ -8,11 +8,29 @@ import { AnimatedButton } from "@/components/ui/AnimatedButton";
 interface OpenLessonsButtonProps {
   children: ReactNode;
   className?: string;
-  /** Show a large animated click finger beside the CTA. */
+  /** Show mouse + click-finger hint pointing at the CTA. */
   showClickHint?: boolean;
 }
 
-function ClickFingerIcon({ className = "h-6 w-6" }: { className?: string }) {
+function MouseIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${className} click-mouse`} aria-hidden>
+      <rect
+        x="7"
+        y="2.5"
+        width="10"
+        height="19"
+        rx="5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path d="M12 2.5v5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="12" cy="7.2" r="1.15" fill="currentColor" />
+    </svg>
+  );
+}
+
+function ClickFingerIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={`${className} click-finger`} aria-hidden>
       <path
@@ -53,13 +71,14 @@ export function OpenLessonsButton({
         {children}
       </AnimatedButton>
       <motion.span
-        initial={{ opacity: 0, y: 6, scale: 0.92 }}
+        initial={{ opacity: 0, y: 8, scale: 0.92 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ delay: 0.35, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute -right-3 -top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#ff9652]/55 bg-[#1a0f08]/95 text-[#ffb07a] shadow-[0_4px_16px_rgba(0,0,0,0.45)] sm:-right-4 sm:-top-5 sm:h-11 sm:w-11"
+        transition={{ delay: 0.3, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="click-hint-badge pointer-events-none absolute -right-5 -top-5 z-10 inline-flex items-center gap-1.5 rounded-2xl border border-[#ff9652]/55 bg-[#1a0f08]/95 px-2.5 py-1.5 text-[#ffb07a] shadow-[0_6px_20px_rgba(0,0,0,0.5)] sm:-right-6 sm:-top-6 sm:gap-2 sm:px-3 sm:py-2"
         aria-hidden
       >
-        <ClickFingerIcon className="h-6 w-6 sm:h-7 sm:w-7" />
+        <MouseIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
+        <ClickFingerIcon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
       </motion.span>
     </div>
   );

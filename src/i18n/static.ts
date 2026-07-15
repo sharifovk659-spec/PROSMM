@@ -7,6 +7,13 @@ export const CONTACT = {
   emailHref: "mailto:info@prosmm.tj",
 } as const;
 
+/** Sticky site-wide −50% promo countdown (one fixed place). */
+export const DISCOUNT = {
+  percent: 50,
+  endsAt: "2026-07-31T23:59:59+05:00",
+  href: "#pricing",
+} as const;
+
 export function buildWhatsAppPurchaseUrl(planName: string, locale: "ru" | "tj" = "tj") {
   const text =
     locale === "ru"

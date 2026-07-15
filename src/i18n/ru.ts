@@ -139,6 +139,12 @@ export const ruDictionary: LocaleDictionary = {
     playReview: "Смотреть отзыв",
     closeReview: "Закрыть",
     clickHint: "Нажмите",
+    discountTitle: "Скидка −50%",
+    discountDays: "дн",
+    discountHours: "час",
+    discountMinutes: "мин",
+    discountSeconds: "сек",
+    discountCta: "Тарифы",
   },
   navLinks: [
     { label: "Программа", href: LINKS.program },
