@@ -78,7 +78,7 @@ export interface SiteContent {
   earners: Earner[];
   videoReviews: {
     id: string;
-    platform: "youtube" | "instagram";
+    platform: "instagram";
     videoId: string;
     url: string;
     avatar: string;

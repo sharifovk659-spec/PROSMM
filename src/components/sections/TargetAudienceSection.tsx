@@ -92,29 +92,29 @@ function AudienceCard({
       viewport={{ once: true, margin: "-40px" }}
       variants={cardFade}
       whileHover={{ y: -3, transition: { duration: 0.22 } }}
-      className="flex h-full min-h-[128px] overflow-hidden rounded-[16px] bg-[#ececec] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] sm:min-h-[136px] sm:rounded-[18px]"
+      className="flex h-full min-h-[168px] overflow-hidden rounded-[18px] bg-[#ececec] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] sm:min-h-[190px] sm:rounded-[20px]"
     >
-      <div className="relative w-[34%] shrink-0 bg-[#ff8a4c] sm:w-[36%]">
-        <div className="relative h-full min-h-[128px] w-full sm:min-h-[136px]">
+      <div className="relative w-[38%] shrink-0 bg-[#ff8a4c] sm:w-[40%]">
+        <div className="relative h-full min-h-[168px] w-full sm:min-h-[190px]">
           <Image
             src={item.image}
             alt={item.title}
             fill
             quality={90}
-            sizes="(max-width: 640px) 34vw, 180px"
+            sizes="(max-width: 640px) 38vw, 240px"
             className="object-cover object-top"
           />
         </div>
-        <div className="absolute bottom-2 left-2 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm sm:h-7 sm:w-7">
+        <div className="absolute bottom-2.5 left-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm sm:h-8 sm:w-8">
           <CardIcon index={index} />
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col justify-center px-3 py-3 sm:px-3.5 sm:py-4 md:px-4">
-        <h3 className="font-[family-name:var(--font-inter)] text-[12px] font-bold leading-snug text-black sm:text-[13px] md:text-sm">
+      <div className="flex flex-1 flex-col justify-center px-4 py-4 sm:px-5 sm:py-5 md:px-6">
+        <h3 className="font-[family-name:var(--font-inter)] text-[14px] font-bold leading-snug text-black sm:text-[15px] md:text-base">
           {item.title}
         </h3>
-        <p className="mt-1.5 font-[family-name:var(--font-inter)] text-[10px] leading-relaxed text-black/55 sm:text-[11px] md:text-xs">
+        <p className="mt-2 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-black/55 sm:text-[13px] md:text-sm">
           {item.description}
         </p>
       </div>
@@ -134,10 +134,17 @@ export function TargetAudienceSection() {
               {sectionTitles.audience}
             </h2>
 
-            <div className="mt-7 grid grid-cols-1 items-stretch gap-3 px-5 sm:mt-8 sm:grid-cols-2 sm:gap-4 sm:px-8 md:px-10">
-              {targetAudience.map((item, i) => (
-                <AudienceCard key={item.title} item={item} index={i} />
-              ))}
+            <div className="mt-7 flex flex-col gap-4 px-5 sm:mt-8 sm:gap-5 sm:px-8 md:px-10">
+              <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 sm:gap-5">
+                {targetAudience.slice(0, 2).map((item, i) => (
+                  <AudienceCard key={item.title} item={item} index={i} />
+                ))}
+              </div>
+              {targetAudience[2] ? (
+                <div className="mx-auto w-full max-w-[520px]">
+                  <AudienceCard item={targetAudience[2]} index={2} />
+                </div>
+              ) : null}
             </div>
 
             <div className="mt-5 grid grid-cols-1 items-center gap-4 rounded-b-[28px] bg-gradient-to-r from-[#fff4c9] via-[#fff0bf] to-[#ffe9a8] px-5 py-6 sm:mt-6 sm:grid-cols-[minmax(120px,150px)_1fr_auto] sm:gap-5 sm:px-8 sm:py-7 md:px-10">

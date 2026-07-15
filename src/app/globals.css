@@ -372,6 +372,47 @@ body {
   }
 }
 
+.click-finger {
+  transform-origin: 30% 80%;
+  animation: click-finger-tap 1.15s ease-in-out infinite;
+}
+
+.click-finger-dot {
+  animation: click-finger-ripple 1.15s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes click-finger-tap {
+  0%,
+  55%,
+  100% {
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+  28% {
+    transform: translateY(2px) rotate(-14deg) scale(0.9);
+  }
+  40% {
+    transform: translateY(0.5px) rotate(-10deg) scale(1.02);
+  }
+}
+
+@keyframes click-finger-ripple {
+  0%,
+  22% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  32% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  55%,
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
 /* ── Pricing header ── */
 .pricing-card-header {
   position: relative;

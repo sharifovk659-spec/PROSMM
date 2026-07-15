@@ -48,7 +48,10 @@ export function LessonsBannerSection() {
             {lessonsBanner.subtitle}
           </p>
 
-          <OpenLessonsButton className="mt-8 !px-10 !py-4 !tracking-[0.2em]">
+          <OpenLessonsButton
+            showClickHint
+            className="mt-8 !px-10 !py-4 !tracking-[0.2em]"
+          >
             {lessonsBanner.ctaText}
           </OpenLessonsButton>
         </SectionReveal>

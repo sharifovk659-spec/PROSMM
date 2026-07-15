@@ -11,7 +11,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 type ReviewItem = {
   id: string;
-  platform: "youtube" | "instagram";
+  platform: "instagram";
   videoId: string;
   url: string;
   avatar: string;
@@ -24,6 +24,49 @@ function PlayIcon({ className = "h-6 w-6" }: { className?: string }) {
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
       <path d="M8.5 6.5v11l9-5.5-9-5.5z" />
     </svg>
+  );
+}
+
+function InstagramThumb({
+  videoId,
+  alt,
+  fallback,
+}: {
+  videoId: string;
+  alt: string;
+  fallback: string;
+}) {
+  const [src, setSrc] = useState(`/api/instagram-thumb?id=${encodeURIComponent(videoId)}`);
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <Image
+        src={fallback}
+        alt={alt}
+        fill
+        sizes="165px"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+      decoding="async"
+      onError={() => {
+        if (src !== fallback) {
+          setSrc(fallback);
+          return;
+        }
+        setFailed(true);
+      }}
+    />
   );
 }
 
@@ -40,14 +83,6 @@ function ReviewCard({
   onOpen: (review: ReviewItem) => void;
   playLabel: string;
 }) {
-  const isYouTube = review.platform === "youtube";
-  const thumb = isYouTube
-    ? `https://img.youtube.com/vi/${review.videoId}/hqdefault.jpg`
-    : null;
-  const previewSrc = isYouTube
-    ? `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${review.videoId}`
-    : null;
-
   return (
     <button
       type="button"
@@ -61,34 +96,15 @@ function ReviewCard({
       }`}
       aria-label={`${playLabel}: ${review.name}`}
     >
-      {isHovered && previewSrc ? (
-        <iframe
-          src={previewSrc}
-          title={review.name}
-          className="pointer-events-none absolute inset-0 h-full w-full scale-[1.02] object-cover"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        />
-      ) : thumb ? (
-        <Image
-          src={thumb}
-          alt={review.name}
-          fill
-          sizes="165px"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      ) : (
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#ff7a2f55,transparent_45%),linear-gradient(160deg,#1a1a1a,#0d0d0d)]" />
-      )}
+      <InstagramThumb videoId={review.videoId} alt={review.name} fallback={review.avatar} />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" />
 
-      {!isHovered && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="review-play-btn flex h-11 w-11 items-center justify-center rounded-full bg-orange-gradient text-white shadow-[0_6px_22px_rgba(255,122,47,0.4)] transition-transform duration-300 group-hover:scale-110">
-            <PlayIcon className="ml-0.5 h-5 w-5" />
-          </span>
-        </div>
-      )}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="review-play-btn flex h-11 w-11 items-center justify-center rounded-full bg-orange-gradient text-white shadow-[0_6px_22px_rgba(255,122,47,0.4)] transition-transform duration-300 group-hover:scale-110">
+          <PlayIcon className="ml-0.5 h-5 w-5" />
+        </span>
+      </div>
 
       <div className="absolute inset-x-0 bottom-0 p-3">
         <div className="flex items-center gap-2.5">
@@ -106,7 +122,7 @@ function ReviewCard({
               {review.name}
             </p>
             <p className="font-[family-name:var(--font-oswald)] text-[10px] uppercase tracking-wider text-[#ff9652]">
-              {review.result}
+              Instagram
             </p>
           </div>
         </div>
@@ -172,10 +188,7 @@ function ReviewModal({
     };
   }, [onClose]);
 
-  const embedSrc =
-    review.platform === "youtube"
-      ? `https://www.youtube-nocookie.com/embed/${review.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
-      : `https://www.instagram.com/reel/${review.videoId}/embed`;
+  const embedSrc = `https://www.instagram.com/reel/${review.videoId}/embed/captioned/`;
 
   return (
     <motion.div
@@ -208,6 +221,7 @@ function ReviewModal({
             className="absolute inset-0 h-full w-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
+            loading="lazy"
           />
         </div>
 
@@ -227,7 +241,7 @@ function ReviewModal({
                 {review.name}
               </p>
               <p className="font-[family-name:var(--font-oswald)] text-xs uppercase tracking-wider text-[#ff9652]">
-                {review.result}
+                Instagram
               </p>
             </div>
           </div>

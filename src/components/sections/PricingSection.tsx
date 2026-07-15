@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { PricingModuleItem, PricingPlan } from "@/data";
-import { useContent } from "@/i18n";
+import { buildWhatsAppPurchaseUrl, useContent, useLocale } from "@/i18n";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -152,7 +152,8 @@ function PricingCard({
 }
 
 export function PricingSection() {
-  const { heroData, pricingPlans, sectionTitles, uiLabels } = useContent();
+  const { pricingPlans, sectionTitles, uiLabels } = useContent();
+  const { locale } = useLocale();
 
   return (
     <SectionContainer id="pricing" className="relative bg-black md:!pb-28" maxWidth="xl">
@@ -167,7 +168,7 @@ export function PricingSection() {
               key={plan.name}
               plan={plan}
               index={i}
-              purchaseHref={heroData.purchaseHref}
+              purchaseHref={buildWhatsAppPurchaseUrl(plan.displayTitle ?? plan.name, locale)}
               purchaseLabel={uiLabels.purchase}
             />
           ))}
