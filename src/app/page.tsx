@@ -12,21 +12,23 @@ import {
   FaqSection,
   ContactSection,
 } from "@/components/sections";
+import { PromoBanner } from "@/components/ui/PromoBanner";
 
 export default function Home() {
   return (
     <>
+      <PromoBanner />
       <Header />
 
       <main className="relative bg-black">
         <HeroSection />
-        <PricingSection />
-        <LessonsBannerSection />
         <CourseBenefitsSection />
         <VideoReviewsSection />
         <TargetAudienceSection />
         <ExpertsSection />
         <ProgramSection />
+        <PricingSection />
+        <LessonsBannerSection />
         <FaqSection />
         <ContactSection />
       </main>

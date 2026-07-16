@@ -342,7 +342,7 @@ export const programModules: ProgramModule[] = [
 export const pricingPlans: PricingPlan[] = [
   {
     name: "САМОСТОЯТЕЛЬНЫЙ",
-    price: "14.990₽",
+    price: "12.495₽",
     oldPrice: "24.990₽",
     image: "/images/pricing/plan-1.svg",
     grayscale: true,
@@ -361,7 +361,7 @@ export const pricingPlans: PricingPlan[] = [
   },
   {
     name: "ПРЕМИУМ",
-    price: "39.990₽",
+    price: "24.995₽",
     oldPrice: "49.990₽",
     image: "/images/pricing/plan-2.svg",
     modules: [
@@ -387,7 +387,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     name: "VIP",
     displayTitle: "👑 VIP 👑",
-    price: "99.990₽",
+    price: "59.995₽",
     oldPrice: "119.990₽",
     image: "/images/pricing/plan-3.svg",
     modules: [

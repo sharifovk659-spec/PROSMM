@@ -8,25 +8,7 @@ interface LessonCtaButtonProps {
   className?: string;
 }
 
-function MouseIcon({ className = "h-4 w-4" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={`${className} click-mouse`} aria-hidden>
-      <rect
-        x="7"
-        y="2.5"
-        width="10"
-        height="19"
-        rx="5"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <path d="M12 2.5v5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="12" cy="7.2" r="1.15" fill="currentColor" />
-    </svg>
-  );
-}
-
-function ClickFingerIcon({ className = "h-4 w-4" }: { className?: string }) {
+function ClickFingerIcon({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={`${className} click-finger`} aria-hidden>
       <path
@@ -66,11 +48,10 @@ export function LessonCtaButton({ label, className = "" }: LessonCtaButtonProps)
         {label}
       </span>
       <span
-        className="click-hint-badge inline-flex shrink-0 items-center gap-1 rounded-full border border-[#ff9652]/45 bg-[#ff7a2f]/15 px-2 py-1.5 text-[#ffb07a]"
+        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#ff9652]/45 bg-[#ff7a2f]/15 text-[#ffb07a]"
         aria-hidden
       >
-        <MouseIcon className="h-4 w-4" />
-        <ClickFingerIcon className="h-4 w-4" />
+        <ClickFingerIcon className="h-5 w-5 sm:h-6 sm:w-6" />
       </span>
     </motion.button>
   );

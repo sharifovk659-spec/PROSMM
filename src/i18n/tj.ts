@@ -139,17 +139,11 @@ export const tjDictionary: LocaleDictionary = {
     playReview: "Отзивро тамошо кунед",
     closeReview: "Пӯшидан",
     clickHint: "Зер кунед",
-    discountTitle: "Тахфиф −50%",
-    discountDays: "рӯз",
-    discountHours: "соат",
-    discountMinutes: "дақ",
-    discountSeconds: "сок",
-    discountCta: "Тарифҳо",
-    pricingSwipe: "Кашида гузаред",
+    discountBadge: "-50%",
   },
   navLinks: [
-    { label: "Тарифҳо", href: LINKS.pricing },
     { label: "Барнома", href: LINKS.program },
+    { label: "Тарифҳо", href: LINKS.pricing },
     { label: "Экспертҳо", href: LINKS.experts },
     { label: "FAQ", href: LINKS.faq },
     { label: "Тамос", href: LINKS.contact },
@@ -266,7 +260,7 @@ export const tjDictionary: LocaleDictionary = {
   pricingPlans: [
     {
       name: "СТАНДАРТ ОНЛАЙН",
-      price: "14.990₽",
+      price: "12.495₽",
       oldPrice: "24.990₽",
       image: "/images/pricing/plan-1.svg",
       grayscale: true,
@@ -282,7 +276,7 @@ export const tjDictionary: LocaleDictionary = {
     },
     {
       name: "ПРЕМИУМ ОНЛАЙН ВА ОФФЛАЙН",
-      price: "39.990₽",
+      price: "24.995₽",
       oldPrice: "49.990₽",
       image: "/images/pricing/plan-2.svg",
       modules: programModulesTj
@@ -302,7 +296,7 @@ export const tjDictionary: LocaleDictionary = {
     {
       name: "ВИП ОНЛАЙН ВА ОФФЛАЙН",
       displayTitle: "👑 VIP 👑",
-      price: "99.990₽",
+      price: "59.995₽",
       oldPrice: "119.990₽",
       image: "/images/pricing/plan-3.svg",
       modules: programModulesTj.map((m) => ({
@@ -345,6 +339,30 @@ export const tjDictionary: LocaleDictionary = {
     titleLine2: "АЗ ЭКСПЕРТ",
     subtitle: "Дарси пул кор кардан аз интернет бо тавассути телефон",
     ctaText: "ТАМОШО КУНЕД",
+  },
+  promo: {
+    discount: "-50%",
+    title: "ТИФОХИ 50% БА ҲАМАИ ТАРИФҲО",
+    timerLabel: "Тамом мешавад",
+    days: "Рӯз",
+    hours: "Соат",
+    minutes: "Дақ",
+    seconds: "Сек",
+    cta: "Тарифҳо",
+  },
+  purchaseForm: {
+    title: "Харидории тариф",
+    subtitle: "Маълумотро пур кунед — мо дар WhatsApp ҷавоб медиҳем",
+    planLabel: "Тариф",
+    nameLabel: "Ном",
+    namePlaceholder: "Номи шумо",
+    phoneLabel: "Рақами телефон",
+    phonePlaceholder: "+992 ...",
+    goalLabel: "Чӣ кор кардан мехоҳед?",
+    goalPlaceholder: "Масалан: SMM-ро омӯхтан, бизнесро пеш бурдан...",
+    submit: "Фиристодан ба WhatsApp",
+    close: "Пӯшидан",
+    requiredHint: "Ҳамаи майдонҳо ҳатмӣ",
   },
   faqItems: [
     {

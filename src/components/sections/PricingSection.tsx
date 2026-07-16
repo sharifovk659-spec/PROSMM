@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { PricingModuleItem, PricingPlan } from "@/data";
-import { buildWhatsAppPurchaseUrl, useContent, useLocale } from "@/i18n";
+import { useContent } from "@/i18n";
+import { usePurchase } from "@/components/providers/PurchaseProvider";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -25,9 +26,9 @@ function StarIcon({ dark = false }: { dark?: boolean }) {
 function ModuleRow({ item }: { item: PricingModuleItem }) {
   if (item.highlight) {
     return (
-      <li className="flex items-start gap-2 rounded-xl bg-[#ffd966] px-2.5 py-2 sm:px-3 sm:py-2.5">
+      <li className="flex items-start gap-2 rounded-xl bg-[#ffd966] px-3 py-2.5">
         <StarIcon dark />
-        <span className="font-[family-name:var(--font-inter)] text-[13px] leading-snug text-black sm:text-[15px]">
+        <span className="font-[family-name:var(--font-inter)] text-sm leading-snug text-black sm:text-[15px]">
           <span className="font-[family-name:var(--font-oswald)] font-semibold uppercase">
             Модуль {item.number}
           </span>
@@ -41,7 +42,7 @@ function ModuleRow({ item }: { item: PricingModuleItem }) {
   return (
     <li className="flex items-start gap-2">
       <StarIcon />
-      <span className="font-[family-name:var(--font-inter)] text-[13px] leading-snug sm:text-[15px]">
+      <span className="font-[family-name:var(--font-inter)] text-sm leading-snug sm:text-[15px]">
         <span className="font-[family-name:var(--font-oswald)] font-semibold text-gradient-orange">
           Модуль {item.number}
         </span>
@@ -58,7 +59,7 @@ function FeatureRow({ text }: { text: string }) {
   return (
     <li className="flex items-start gap-2">
       <StarIcon />
-      <span className="font-[family-name:var(--font-inter)] text-[13px] leading-snug text-black/85 sm:text-[15px]">
+      <span className="font-[family-name:var(--font-inter)] text-sm leading-snug text-black/85 sm:text-[15px]">
         {text}
       </span>
     </li>
@@ -68,14 +69,18 @@ function FeatureRow({ text }: { text: string }) {
 function PricingCard({
   plan,
   index,
-  purchaseHref,
   purchaseLabel,
+  discountBadge,
+  onPurchase,
 }: {
   plan: PricingPlan;
   index: number;
-  purchaseHref: string;
   purchaseLabel: string;
+  discountBadge: string;
+  onPurchase: (planName: string) => void;
 }) {
+  const planTitle = plan.displayTitle ?? plan.name;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 32 }}
@@ -86,39 +91,43 @@ function PricingCard({
         delay: index * 0.12,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`relative flex h-full w-[min(100%,320px)] shrink-0 snap-center flex-col overflow-hidden rounded-[20px] bg-light shadow-[0_4px_24px_rgba(0,0,0,0.18)] sm:w-auto sm:rounded-[22px] ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-[22px] bg-light shadow-[0_4px_24px_rgba(0,0,0,0.18)] ${
         plan.vip ? "z-10 shadow-[0_12px_48px_rgba(0,0,0,0.35)]" : ""
       }`}
     >
-      <div className="p-3.5 pb-0 sm:p-5 sm:pb-0">
-        <div className="relative h-[150px] overflow-hidden rounded-[14px] sm:h-[200px] sm:rounded-[16px]">
+      <span className="promo-discount-pulse absolute right-4 top-4 z-10 rounded-full bg-orange-gradient px-3 py-1 font-[family-name:var(--font-bebas)] text-lg leading-none tracking-wide text-white shadow-[0_6px_20px_rgba(255,122,47,0.35)]">
+        {discountBadge}
+      </span>
+
+      <div className="p-4 pb-0 sm:p-5 sm:pb-0">
+        <div className="relative h-[180px] overflow-hidden rounded-[16px] sm:h-[200px]">
           <Image
             src={plan.image}
             alt={plan.name}
             fill
-            sizes="(max-width: 768px) 85vw, 360px"
+            sizes="(max-width: 768px) 100vw, 360px"
             className={`object-cover object-center ${plan.grayscale ? "grayscale" : ""}`}
           />
         </div>
       </div>
 
-      <h3 className="mt-3 px-3.5 text-center font-[family-name:var(--font-oswald)] text-lg font-bold uppercase tracking-wide text-black sm:mt-4 sm:px-5 sm:text-2xl">
-        {plan.displayTitle ?? plan.name}
+      <h3 className="mt-4 px-4 text-center font-[family-name:var(--font-oswald)] text-xl font-bold uppercase tracking-wide text-black sm:px-5 sm:text-2xl">
+        {planTitle}
       </h3>
 
-      <div className="flex flex-1 flex-col px-3.5 py-3.5 sm:px-5 sm:py-5">
-        <ul className="space-y-1.5 sm:space-y-2.5">
+      <div className="flex flex-1 flex-col px-4 py-4 sm:px-5 sm:py-5">
+        <ul className="space-y-2 sm:space-y-2.5">
           {plan.modules.map((mod) => (
             <ModuleRow key={`${mod.number}-${mod.title}`} item={mod} />
           ))}
         </ul>
 
         {plan.bonuses && plan.bonuses.length > 0 && (
-          <div className="mt-3 sm:mt-4">
-            <p className="mb-1.5 font-[family-name:var(--font-oswald)] text-base font-semibold text-gradient-orange sm:mb-2 sm:text-lg">
+          <div className="mt-4">
+            <p className="mb-2 font-[family-name:var(--font-oswald)] text-lg font-semibold text-gradient-orange">
               Бонус
             </p>
-            <ul className="space-y-1.5 sm:space-y-2.5">
+            <ul className="space-y-2 sm:space-y-2.5">
               {plan.bonuses.map((bonus) => (
                 <FeatureRow key={bonus} text={bonus} />
               ))}
@@ -127,22 +136,25 @@ function PricingCard({
         )}
 
         {plan.extras && plan.extras.length > 0 && (
-          <ul className="mt-3 space-y-1.5 sm:mt-4 sm:space-y-2.5">
+          <ul className="mt-4 space-y-2 sm:space-y-2.5">
             {plan.extras.map((extra) => (
               <FeatureRow key={extra} text={extra} />
             ))}
           </ul>
         )}
 
-        <div className="mt-auto pt-4 sm:pt-6">
-          <p className="font-[family-name:var(--font-bebas)] text-3xl leading-none text-black sm:text-[2.75rem]">
+        <div className="mt-auto pt-5 sm:pt-6">
+          <p className="font-[family-name:var(--font-bebas)] text-4xl leading-none text-black sm:text-[2.75rem]">
             {plan.price}
           </p>
           <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-black/40 line-through sm:text-base">
             {plan.oldPrice}
           </p>
 
-          <AnimatedButton href={purchaseHref} className="mt-3.5 w-full !px-6 !py-3.5 sm:mt-5 sm:!px-10 sm:!py-4">
+          <AnimatedButton
+            onClick={() => onPurchase(planTitle)}
+            className="mt-4 w-full sm:mt-5"
+          >
             {purchaseLabel}
           </AnimatedButton>
         </div>
@@ -153,35 +165,26 @@ function PricingCard({
 
 export function PricingSection() {
   const { pricingPlans, sectionTitles, uiLabels } = useContent();
-  const { locale } = useLocale();
+  const { open } = usePurchase();
 
   return (
-    <SectionContainer
-      id="pricing"
-      className="relative scroll-mt-28 bg-black !pb-16 sm:!pb-20 md:!pb-24"
-      maxWidth="xl"
-    >
+    <SectionContainer id="pricing" className="relative bg-black md:!pb-28" maxWidth="xl">
       <SectionReveal>
         <SectionHeading>{sectionTitles.pricing}</SectionHeading>
       </SectionReveal>
 
       <SectionReveal delay={0.15}>
-        {/* Mobile: swipe carousel · Desktop: 3-column grid */}
-        <div className="relative left-1/2 mt-8 w-screen -translate-x-1/2 sm:mt-12 sm:left-auto sm:w-auto sm:translate-x-0 lg:mt-16">
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-[max(1rem,calc((100vw-320px)/2))] pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-3 sm:items-stretch sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-6 [&::-webkit-scrollbar]:hidden">
-            {pricingPlans.map((plan, i) => (
-              <PricingCard
-                key={plan.name}
-                plan={plan}
-                index={i}
-                purchaseHref={buildWhatsAppPurchaseUrl(plan.displayTitle ?? plan.name, locale)}
-                purchaseLabel={uiLabels.purchase}
-              />
-            ))}
-          </div>
-          <p className="mt-3 text-center font-[family-name:var(--font-oswald)] text-[10px] uppercase tracking-[0.16em] text-white/40 sm:hidden">
-            ← {uiLabels.pricingSwipe} →
-          </p>
+        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-3 md:gap-5 lg:mt-16 lg:gap-6">
+          {pricingPlans.map((plan, i) => (
+            <PricingCard
+              key={plan.name}
+              plan={plan}
+              index={i}
+              purchaseLabel={uiLabels.purchase}
+              discountBadge={uiLabels.discountBadge}
+              onPurchase={open}
+            />
+          ))}
         </div>
       </SectionReveal>
     </SectionContainer>

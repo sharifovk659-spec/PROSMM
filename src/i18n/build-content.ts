@@ -58,6 +58,8 @@ export interface SiteContent {
   experts: LocaleDictionary["experts"];
   programModules: LocaleDictionary["programModules"];
   pricingPlans: LocaleDictionary["pricingPlans"];
+  promo: LocaleDictionary["promo"];
+  purchaseForm: LocaleDictionary["purchaseForm"];
   lessonsBanner: LocaleDictionary["lessonsBanner"] & {
     expert: { image: string; name: string };
     phoneScreen: string;
@@ -123,6 +125,8 @@ export function buildContent(locale: Locale): SiteContent {
     experts: dict.experts,
     programModules: dict.programModules,
     pricingPlans: dict.pricingPlans,
+    promo: dict.promo,
+    purchaseForm: dict.purchaseForm,
     lessonsBanner: {
       ...dict.lessonsBanner,
       expert: { image: ASSETS.lessonsBannerImage, name: dict.experts[0]?.name ?? "" },

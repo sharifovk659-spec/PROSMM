@@ -1,26 +1,42 @@
+export const WHATSAPP_NUMBER = "992883001270";
+
 export const CONTACT = {
-  phone: "+992 100 944 545",
-  phoneHref: "tel:+992100944545",
-  whatsapp: "+992 100 944 545",
-  whatsappHref: "https://wa.me/992100944545",
+  phone: "+992 883 001 270",
+  phoneHref: "tel:+992883001270",
+  whatsapp: "+992 883 001 270",
+  whatsappHref: `https://wa.me/${WHATSAPP_NUMBER}`,
   email: "info@prosmm.tj",
   emailHref: "mailto:info@prosmm.tj",
 } as const;
 
-/** Sticky site-wide −50% promo countdown (one fixed place). */
-export const DISCOUNT = {
-  percent: 50,
-  endsAt: "2026-07-31T23:59:59+05:00",
-  href: "#pricing",
-} as const;
+export interface PurchaseFormPayload {
+  planName: string;
+  name: string;
+  phone: string;
+  goal: string;
+}
 
-export function buildWhatsAppPurchaseUrl(planName: string, locale: "ru" | "tj" = "tj") {
+export function buildWhatsAppPurchaseUrl(
+  payload: PurchaseFormPayload,
+  locale: "ru" | "tj" = "tj",
+) {
+  const { planName, name, phone, goal } = payload;
   const text =
     locale === "ru"
-      ? `Здравствуйте! Я с сайта PROSMM. Хочу купить тариф «${planName}».`
-      : `Салом! Ман аз сайти PROSMM омадам. Мехоҳам тарифи «${planName}»-ро харидорӣ кунам.`;
+      ? `Здравствуйте! Я с сайта PROSMM.
 
-  return `https://wa.me/992100944545?text=${encodeURIComponent(text)}`;
+Тариф: ${planName}
+Имя: ${name}
+Телефон: ${phone}
+Что хочу сделать: ${goal}`
+      : `Салом! Ман аз сайти PROSMM омадам.
+
+Тариф: ${planName}
+Ном: ${name}
+Телефон: ${phone}
+Чӣ кор кардан мехоҳам: ${goal}`;
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 export const LINKS = {

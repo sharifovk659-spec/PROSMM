@@ -46,6 +46,32 @@ export interface LessonsBannerCopy {
   ctaText: string;
 }
 
+export interface PromoCopy {
+  discount: string;
+  title: string;
+  timerLabel: string;
+  days: string;
+  hours: string;
+  minutes: string;
+  seconds: string;
+  cta: string;
+}
+
+export interface PurchaseFormCopy {
+  title: string;
+  subtitle: string;
+  planLabel: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  phoneLabel: string;
+  phonePlaceholder: string;
+  goalLabel: string;
+  goalPlaceholder: string;
+  submit: string;
+  close: string;
+  requiredHint: string;
+}
+
 export interface ContactCopy {
   subtitle: string;
   locationLabel: string;
@@ -97,13 +123,7 @@ export interface LocaleDictionary {
     playReview: string;
     closeReview: string;
     clickHint: string;
-    discountTitle: string;
-    discountDays: string;
-    discountHours: string;
-    discountMinutes: string;
-    discountSeconds: string;
-    discountCta: string;
-    pricingSwipe: string;
+    discountBadge: string;
   };
   navLinks: NavLink[];
   heroFeatures: HeroFeature[];
@@ -115,6 +135,8 @@ export interface LocaleDictionary {
   programModules: ProgramModule[];
   pricingPlans: PricingPlan[];
   lessonsBanner: LessonsBannerCopy;
+  promo: PromoCopy;
+  purchaseForm: PurchaseFormCopy;
   contactSection: ContactCopy;
   faqItems: FaqItem[];
   footerInfoLinks: FooterLink[];

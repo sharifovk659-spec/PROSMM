@@ -139,17 +139,11 @@ export const ruDictionary: LocaleDictionary = {
     playReview: "Смотреть отзыв",
     closeReview: "Закрыть",
     clickHint: "Нажмите",
-    discountTitle: "Скидка −50%",
-    discountDays: "дн",
-    discountHours: "час",
-    discountMinutes: "мин",
-    discountSeconds: "сек",
-    discountCta: "Тарифы",
-    pricingSwipe: "Листайте",
+    discountBadge: "-50%",
   },
   navLinks: [
-    { label: "Тарифы", href: LINKS.pricing },
     { label: "Программа", href: LINKS.program },
+    { label: "Тарифы", href: LINKS.pricing },
     { label: "Эксперты", href: LINKS.experts },
     { label: "FAQ", href: LINKS.faq },
     { label: "Контакты", href: LINKS.contact },
@@ -254,7 +248,7 @@ export const ruDictionary: LocaleDictionary = {
   pricingPlans: [
     {
       name: "СТАНДАРТ ОНЛАЙН",
-      price: "14.990₽",
+      price: "12.495₽",
       oldPrice: "24.990₽",
       image: "/images/pricing/plan-1.svg",
       grayscale: true,
@@ -270,7 +264,7 @@ export const ruDictionary: LocaleDictionary = {
     },
     {
       name: "ПРЕМИУМ ОНЛАЙН И ОФФЛАЙН",
-      price: "39.990₽",
+      price: "24.995₽",
       oldPrice: "49.990₽",
       image: "/images/pricing/plan-2.svg",
       modules: programModulesRu
@@ -290,7 +284,7 @@ export const ruDictionary: LocaleDictionary = {
     {
       name: "VIP ОНЛАЙН И ОФФЛАЙН",
       displayTitle: "👑 VIP 👑",
-      price: "99.990₽",
+      price: "59.995₽",
       oldPrice: "119.990₽",
       image: "/images/pricing/plan-3.svg",
       modules: programModulesRu.map((m) => ({
@@ -333,6 +327,30 @@ export const ruDictionary: LocaleDictionary = {
     titleLine2: "ОТ ЭКСПЕРТА",
     subtitle: "Урок о заработке в интернете через телефон",
     ctaText: "СМОТРЕТЬ УРОК",
+  },
+  promo: {
+    discount: "-50%",
+    title: "СКИДКА 50% НА ВСЕ ТАРИФЫ",
+    timerLabel: "До конца",
+    days: "День",
+    hours: "Час",
+    minutes: "Мин",
+    seconds: "Сек",
+    cta: "Тарифы",
+  },
+  purchaseForm: {
+    title: "Покупка тарифа",
+    subtitle: "Заполните данные — ответим в WhatsApp",
+    planLabel: "Тариф",
+    nameLabel: "Имя",
+    namePlaceholder: "Ваше имя",
+    phoneLabel: "Номер телефона",
+    phonePlaceholder: "+992 ...",
+    goalLabel: "Что хотите сделать?",
+    goalPlaceholder: "Например: изучить SMM, продвинуть бизнес...",
+    submit: "Отправить в WhatsApp",
+    close: "Закрыть",
+    requiredHint: "Все поля обязательны",
   },
   faqItems: [
     {
