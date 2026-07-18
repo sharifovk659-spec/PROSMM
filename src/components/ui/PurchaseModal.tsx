@@ -48,14 +48,8 @@ export function PurchaseModal({ open, planName, onClose }: PurchaseModalProps) {
       locale,
     );
 
-    const whatsappLink = document.createElement("a");
-    whatsappLink.href = url;
-    whatsappLink.target = "_blank";
-    whatsappLink.rel = "noopener noreferrer";
-    document.body.appendChild(whatsappLink);
-    whatsappLink.click();
-    whatsappLink.remove();
-
+    // Direct navigation works more reliably on mobile than window.open / synthetic click
+    window.location.assign(url);
     onClose();
   };
 

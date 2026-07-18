@@ -1,9 +1,9 @@
-export const WHATSAPP_NUMBER = "992883001270";
+export const WHATSAPP_NUMBER = "992100944545";
 
 export const CONTACT = {
-  phone: "+992 883 001 270",
-  phoneHref: "tel:+992883001270",
-  whatsapp: "+992 883 001 270",
+  phone: "+992 100 944 545",
+  phoneHref: "tel:+992100944545",
+  whatsapp: "+992 100 944 545",
   whatsappHref: `https://wa.me/${WHATSAPP_NUMBER}`,
   email: "info@prosmm.tj",
   emailHref: "mailto:info@prosmm.tj",
@@ -36,7 +36,7 @@ export function buildWhatsAppPurchaseUrl(
 Телефон: ${phone}
 Чӣ кор кардан мехоҳам: ${goal}`;
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(text)}`;
 }
 
 export const LINKS = {
