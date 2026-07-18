@@ -1,9 +1,9 @@
-export const WHATSAPP_NUMBER = "992100944545";
+export const WHATSAPP_NUMBER = "992555330161";
 
 export const CONTACT = {
-  phone: "+992 100 944 545",
-  phoneHref: "tel:+992100944545",
-  whatsapp: "+992 100 944 545",
+  phone: "+992 555 330 161",
+  phoneHref: "tel:+992555330161",
+  whatsapp: "+992 555 330 161",
   whatsappHref: `https://wa.me/${WHATSAPP_NUMBER}`,
   email: "info@prosmm.tj",
   emailHref: "mailto:info@prosmm.tj",

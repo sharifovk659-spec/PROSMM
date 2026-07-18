@@ -143,7 +143,7 @@ export async function POST(request: Request) {
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
   const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
   const ownerPhone =
-    normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER) ?? "992100944545";
+    normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER) ?? "992555330161";
 
   if (!idInstance || !apiToken) {
     return NextResponse.json({ error: "WhatsApp API is not configured" }, { status: 503 });
