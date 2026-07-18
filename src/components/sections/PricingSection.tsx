@@ -106,7 +106,7 @@ function PricingCard({
             alt={plan.name}
             fill
             sizes="(max-width: 768px) 100vw, 360px"
-            className={`object-cover object-center ${plan.grayscale ? "grayscale" : ""}`}
+            className={`object-cover object-top ${plan.grayscale ? "grayscale" : ""}`}
           />
         </div>
       </div>

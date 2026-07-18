@@ -159,7 +159,7 @@ export const tjDictionary: LocaleDictionary = {
   sectionTitles: {
     benefits: "ДАР КУРС ЧӢ МЕГИРЕД:",
     audience: "ИН КУРС БАРОИ КИСТ:",
-    expertsBadge: "ДАР БОРАИ ЭКСПЕРТ",
+    expertsBadge: "ДАР БОРАИ ЭКСПЕРТҲО",
     program: "БАРНОМАИ ОМӮЗИШ",
     pricing: "ТАРИФҲОИ КУРС",
     earnings: "АЗ КУРС ДАРОМОД КАРДАНД",
@@ -170,7 +170,7 @@ export const tjDictionary: LocaleDictionary = {
   uiLabels: {
     headerCta: "ДАРСИ РОЙГОН",
     getLessons: "ДАРСИ РОЙГОН",
-    fromExperts: "АЗ ЭКСПЕРТ",
+    fromExperts: "ДАР БОРАИ ЭКСПЕРТҲО",
     audienceStrip:
       "Ин курс на танҳо назария медиҳад — 95%-и он амалия аст. Шумо на фақат меомӯзед, балки дар амал татбиқ мекунед: аз сифр то соҳибкор шудан, аз омӯхтани SMM то гирифтани фармоишҳои аввалин, аз бизнеси хурд то ҷалби мизоҷони нав тавассути интернет. Ҳар дарс — қадами мушаххас ба сӯи натиҷа.",
     moduleOutcome: "Натиҷаи модул",
@@ -315,7 +315,7 @@ export const tjDictionary: LocaleDictionary = {
       name: "СТАНДАРТ ОНЛАЙН",
       price: "12.495₽",
       oldPrice: "24.990₽",
-      image: "/images/pricing/plan-1.jpg",
+      image: "/images/audience/audience-3.jpg",
       grayscale: false,
       modules: programModulesTj
         .filter((m) => m.number <= 9)
@@ -331,7 +331,7 @@ export const tjDictionary: LocaleDictionary = {
       name: "ПРЕМИУМ ОНЛАЙН ВА ОФФЛАЙН",
       price: "24.995₽",
       oldPrice: "49.990₽",
-      image: "/images/pricing/plan-2.jpg",
+      image: "/images/audience/audience-2.jpg",
       modules: programModulesTj
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -351,7 +351,7 @@ export const tjDictionary: LocaleDictionary = {
       displayTitle: "👑 VIP 👑",
       price: "59.995₽",
       oldPrice: "119.990₽",
-      image: "/images/pricing/plan-3.jpg",
+      image: "/images/lessons/img-8322.jpg",
       modules: programModulesTj.map((m) => ({
         number: m.number,
         title: m.title,
@@ -389,7 +389,7 @@ export const tjDictionary: LocaleDictionary = {
   },
   lessonsBanner: {
     titleLine1: "1 ДАРСИ РОЙГОН",
-    titleLine2: "АЗ ЭКСПЕРТ",
+    titleLine2: "ДАР БОРАИ ЭКСПЕРТҲО",
     subtitle: "Дарси пул кор кардан аз интернет бо тавассути телефон",
     ctaText: "ТАМОШО КУНЕД",
   },
@@ -437,11 +437,6 @@ export const tjDictionary: LocaleDictionary = {
       question: "Метарсам, ки наметавонам",
       answer:
         "Ин табиӣ аст! Курс қадам ба қадам сохта шудааст — аз сифр то натиҷа. Шаблонҳо, чек-листҳо ва дастгирии кураторҳо хоҳед дошт. Аксари донишҷӯён бе таҷриба оғоз карда, аллакай аз контент даромад мегиранд.",
-    },
-    {
-      question: "Чӣ тавр аз кишвари дигар пардохт кунам?",
-      answer:
-        "Пардохт бо кортҳои Visa ва Mastercard, инчунин тавассути PayPal ва криптовалюта қабул мешавад. Пас аз пардохт дастрасӣ худкор кушода мешавад — аз кишвари шумо вобаста нест.",
     },
   ],
   footerInfoLinks: [

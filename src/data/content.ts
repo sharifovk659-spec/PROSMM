@@ -25,7 +25,7 @@ export const sectionTitles = {
 export const uiLabels = {
   headerCta: "Заказать",
   getLessons: "ПОЛУЧИТЬ 2 УРОКА",
-  fromExperts: "ОТ ЭКСПЕРТОВ",
+  fromExperts: "ОБ ЭКСПЕРТАХ",
   audienceStrip:
     "Этот курс будет особенно полезен тем, у кого уже есть аудитория и кто хочет монетизировать контент, а также тем, кто только начинает строить личный бренд с нуля.",
   moduleOutcome: "Итог модуля",
@@ -344,7 +344,7 @@ export const pricingPlans: PricingPlan[] = [
     name: "САМОСТОЯТЕЛЬНЫЙ",
     price: "12.495₽",
     oldPrice: "24.990₽",
-    image: "/images/pricing/plan-1.jpg",
+    image: "/images/audience/audience-3.jpg",
     grayscale: false,
     modules: [
       { number: 0, title: "Предобучение" },
@@ -363,7 +363,7 @@ export const pricingPlans: PricingPlan[] = [
     name: "ПРЕМИУМ",
     price: "24.995₽",
     oldPrice: "49.990₽",
-    image: "/images/pricing/plan-2.jpg",
+    image: "/images/audience/audience-2.jpg",
     modules: [
       { number: 0, title: "Предобучение" },
       { number: 1, title: "Психология личного бренда" },
@@ -389,7 +389,7 @@ export const pricingPlans: PricingPlan[] = [
     displayTitle: "👑 VIP 👑",
     price: "59.995₽",
     oldPrice: "119.990₽",
-    image: "/images/pricing/plan-3.jpg",
+    image: "/images/lessons/img-8322.jpg",
     modules: [
       { number: 0, title: "Предобучение" },
       { number: 1, title: "Психология личного бренда" },
@@ -417,7 +417,7 @@ export const pricingPlans: PricingPlan[] = [
 
 export const lessonsBanner = {
   titleLine1: "ПОЛУЧИТЬ УРОКИ",
-  titleLine2: "ОТ ЭКСПЕРТА",
+  titleLine2: "ОБ ЭКСПЕРТАХ",
   subtitle:
     "2 бесплатных урока от создателя PROSMM — смотрите бесплатно прямо на сайте",
   ctaText: "ХОЧУ УРОКИ",
@@ -462,11 +462,6 @@ export const faqItems: FaqItem[] = [
     question: "Боюсь, что я не смогу",
     answer:
       "Это нормально! Курс построен пошагово — от нуля до результата. У вас будут шаблоны, чек-листы и поддержка кураторов. Большинство учеников начинали без опыта и уже зарабатывают на контенте.",
-  },
-  {
-    question: "Как я могу оплатить с другой страны?",
-    answer:
-      "Принимаем оплату картами Visa и Mastercard, а также через PayPal и криптовалюту. После оплаты доступ открывается автоматически — независимо от вашей страны.",
   },
 ];
 

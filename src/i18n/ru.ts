@@ -170,7 +170,7 @@ export const ruDictionary: LocaleDictionary = {
   uiLabels: {
     headerCta: "БЕСПЛАТНЫЙ УРОК",
     getLessons: "БЕСПЛАТНЫЙ УРОК",
-    fromExperts: "ОТ ЭКСПЕРТА",
+    fromExperts: "ОБ ЭКСПЕРТАХ",
     audienceStrip:
       "Этот курс даёт не только теорию — 95% это практика. Вы не просто учитесь, а применяете знания на деле: от нуля до предпринимателя, от изучения SMM до первых заказов, от малого бизнеса до привлечения новых клиентов через интернет. Каждый урок — конкретный шаг к результату.",
     moduleOutcome: "Итог модуля",
@@ -303,7 +303,7 @@ export const ruDictionary: LocaleDictionary = {
       name: "СТАНДАРТ ОНЛАЙН",
       price: "12.495₽",
       oldPrice: "24.990₽",
-      image: "/images/pricing/plan-1.jpg",
+      image: "/images/audience/audience-3.jpg",
       grayscale: false,
       modules: programModulesRu
         .filter((m) => m.number <= 9)
@@ -319,7 +319,7 @@ export const ruDictionary: LocaleDictionary = {
       name: "ПРЕМИУМ ОНЛАЙН И ОФФЛАЙН",
       price: "24.995₽",
       oldPrice: "49.990₽",
-      image: "/images/pricing/plan-2.jpg",
+      image: "/images/audience/audience-2.jpg",
       modules: programModulesRu
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -339,7 +339,7 @@ export const ruDictionary: LocaleDictionary = {
       displayTitle: "👑 VIP 👑",
       price: "59.995₽",
       oldPrice: "119.990₽",
-      image: "/images/pricing/plan-3.jpg",
+      image: "/images/lessons/img-8322.jpg",
       modules: programModulesRu.map((m) => ({
         number: m.number,
         title: m.title,
@@ -377,7 +377,7 @@ export const ruDictionary: LocaleDictionary = {
   },
   lessonsBanner: {
     titleLine1: "1 БЕСПЛАТНЫЙ УРОК",
-    titleLine2: "ОТ ЭКСПЕРТА",
+    titleLine2: "ОБ ЭКСПЕРТАХ",
     subtitle: "Урок о заработке в интернете через телефон",
     ctaText: "СМОТРЕТЬ УРОК",
   },
@@ -425,11 +425,6 @@ export const ruDictionary: LocaleDictionary = {
       question: "Боюсь, что я не смогу",
       answer:
         "Это нормально! Курс построен пошагово — от нуля до результата. У вас будут шаблоны, чек-листы и поддержка кураторов. Большинство учеников начинали без опыта и уже зарабатывают на контенте.",
-    },
-    {
-      question: "Как я могу оплатить с другой страны?",
-      answer:
-        "Принимаем оплату картами Visa и Mastercard, а также через PayPal и криптовалюту. После оплаты доступ открывается автоматически — независимо от вашей страны.",
     },
   ],
   footerInfoLinks: [
