@@ -130,6 +130,7 @@ export const ruDictionary: LocaleDictionary = {
     footerInfo: "ИНФОРМАЦИЯ",
     footerDocs: "ДОКУМЕНТЫ",
     footerRights: "Все права защищены.",
+    footerDevCredit: "Разработка сайта — sharifov-dev",
     footerContacts: "КОНТАКТЫ",
     footerTagline: "Обучение SMM и монетизация контента в Таджикистане",
     instagram: "Instagram",

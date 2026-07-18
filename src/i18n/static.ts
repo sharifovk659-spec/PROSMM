@@ -84,7 +84,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DL1LgXkuraH",
     url: "https://www.instagram.com/reel/DL1LgXkuraH/",
     avatar: "/images/earnings/avatar-01.svg",
-    name: "@review_01",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -93,7 +93,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DOeEfooDKvX",
     url: "https://www.instagram.com/reel/DOeEfooDKvX/",
     avatar: "/images/earnings/avatar-02.svg",
-    name: "@review_02",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -102,7 +102,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DOgZAJPDMg3",
     url: "https://www.instagram.com/reel/DOgZAJPDMg3/",
     avatar: "/images/earnings/avatar-03.svg",
-    name: "@review_03",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -111,7 +111,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DSl2nOfjBRq",
     url: "https://www.instagram.com/reel/DSl2nOfjBRq/",
     avatar: "/images/earnings/avatar-04.svg",
-    name: "@review_04",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -120,7 +120,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DSuJJ0rDGVZ",
     url: "https://www.instagram.com/reel/DSuJJ0rDGVZ/",
     avatar: "/images/earnings/avatar-05.svg",
-    name: "@review_05",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -129,7 +129,7 @@ export const VIDEO_REVIEWS = [
     videoId: "C7MGsy_sb2j",
     url: "https://www.instagram.com/reel/C7MGsy_sb2j/",
     avatar: "/images/earnings/avatar-06.svg",
-    name: "@review_06",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -138,7 +138,7 @@ export const VIDEO_REVIEWS = [
     videoId: "C9_aH6wKRii",
     url: "https://www.instagram.com/reel/C9_aH6wKRii/",
     avatar: "/images/earnings/avatar-07.svg",
-    name: "@review_07",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -147,7 +147,7 @@ export const VIDEO_REVIEWS = [
     videoId: "C_sw-3msnHD",
     url: "https://www.instagram.com/reel/C_sw-3msnHD/",
     avatar: "/images/earnings/avatar-08.svg",
-    name: "@review_08",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -156,7 +156,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DGVQbbrOHoW",
     url: "https://www.instagram.com/reel/DGVQbbrOHoW/",
     avatar: "/images/earnings/avatar-09.svg",
-    name: "@review_09",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
   {
@@ -165,7 +165,7 @@ export const VIDEO_REVIEWS = [
     videoId: "DI38XuNs64K",
     url: "https://www.instagram.com/reel/DI38XuNs64K/",
     avatar: "/images/earnings/avatar-10.svg",
-    name: "@review_10",
+    name: "@ilhom.smm",
     result: "Instagram",
   },
 ] as const;

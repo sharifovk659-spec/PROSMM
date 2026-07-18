@@ -48,9 +48,19 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/5 pt-6 sm:flex-row sm:justify-between">
-          <p className="text-center text-[11px] text-gray/60 sm:text-xs">
-            © {new Date().getFullYear()} PROSMM. {uiLabels.footerRights}
-          </p>
+          <div className="flex flex-col items-center gap-1.5 sm:items-start">
+            <p className="text-center text-[11px] text-gray/60 sm:text-left sm:text-xs">
+              © {new Date().getFullYear()} PROSMM. {uiLabels.footerRights}
+            </p>
+            <a
+              href="https://komron.inovaauto.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center text-[11px] text-gray/50 transition-colors hover:text-[#ff9652] sm:text-left sm:text-xs"
+            >
+              {uiLabels.footerDevCredit}
+            </a>
+          </div>
           <LanguageSwitcher />
         </div>
       </div>

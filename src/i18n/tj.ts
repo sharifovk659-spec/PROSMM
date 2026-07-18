@@ -130,6 +130,7 @@ export const tjDictionary: LocaleDictionary = {
     footerInfo: "МАЪЛУМОТ",
     footerDocs: "ҲУҶҶАТҲО",
     footerRights: "Ҳамаи ҳуқуқҳо ҳифз шудаанд.",
+    footerDevCredit: "Таҳияи сайт — sharifov-dev",
     footerContacts: "ТАМОС",
     footerTagline: "Омӯзиши SMM ва монетизатсияи контент дар Тоҷикистон",
     instagram: "Instagram",

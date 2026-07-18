@@ -119,6 +119,7 @@ export interface LocaleDictionary {
     footerInfo: string;
     footerDocs: string;
     footerRights: string;
+    footerDevCredit: string;
     footerContacts: string;
     footerTagline: string;
     instagram: string;
