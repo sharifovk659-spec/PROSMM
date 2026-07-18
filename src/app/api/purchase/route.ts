@@ -19,7 +19,6 @@ interface GreenSendResult {
   quotaExceeded?: boolean;
 }
 
-/** Normalize to international digits (992…) for Green API. */
 function normalizePhone(phone: string): string | null {
   let digits = phone.replace(/\D/g, "");
   if (!digits) return null;
@@ -37,11 +36,6 @@ function formatDisplayPhone(digits: string) {
   return `+${digits}`;
 }
 
-/**
- * Lead notification for the business inbox.
- * This is sent TO the owner's inbox number (not to the client),
- * so on that phone it arrives as an incoming message from the business WhatsApp.
- */
 function buildLeadMessage(payload: {
   planName: string;
   name: string;
@@ -94,30 +88,6 @@ function isQuotaError(data: unknown): boolean {
   );
 }
 
-async function checkWhatsAppChatId(
-  apiUrl: string,
-  idInstance: string,
-  apiToken: string,
-  phoneDigits: string,
-): Promise<string | null> {
-  try {
-    const response = await fetch(`${apiUrl}/waInstance${idInstance}/checkWhatsapp/${apiToken}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phoneNumber: Number(phoneDigits), force: true }),
-    });
-    const data = (await response.json().catch(() => null)) as {
-      existsWhatsapp?: boolean;
-      chatId?: string;
-    } | null;
-
-    if (!response.ok || !data?.existsWhatsapp || !data.chatId) return null;
-    return data.chatId;
-  } catch {
-    return null;
-  }
-}
-
 async function sendGreenMessage(
   apiUrl: string,
   idInstance: string,
@@ -154,34 +124,14 @@ async function sendGreenMessage(
   }
 }
 
-async function resolveChatId(
-  apiUrl: string,
-  idInstance: string,
-  apiToken: string,
-  phoneDigits: string,
-) {
-  return (
-    (await checkWhatsAppChatId(apiUrl, idInstance, apiToken, phoneDigits)) ??
-    `${phoneDigits}@c.us`
-  );
-}
-
 export async function POST(request: Request) {
   const idInstance = process.env.GREEN_API_ID_INSTANCE?.trim();
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
   const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
 
-  // WhatsApp linked to Green API (sender). Messages FROM this number.
-  const instancePhone = normalizePhone(
-    process.env.GREEN_API_INSTANCE_PHONE ?? WHATSAPP_NUMBER,
-  );
-
-  // Where the owner should RECEIVE lead notifications (incoming on that phone).
-  // Must be a DIFFERENT number than instancePhone to look like a real notification.
-  const inboxPhone = normalizePhone(
-    process.env.GREEN_API_INBOX_PHONE ?? "992285855588",
-  );
-  const notifyPhone = normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER);
+  // Owner WhatsApp — always deliver here so they see the lead on their phone
+  const ownerPhone =
+    normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER) ?? "992100944545";
 
   if (!idInstance || !apiToken) {
     return NextResponse.json({ error: "WhatsApp API is not configured" }, { status: 503 });
@@ -234,23 +184,10 @@ export async function POST(request: Request) {
     locale,
   });
 
-  // Deliver ONLY to business inbox — never send CRM text to the client
-  // (that looked like the owner typed it themselves).
-  const destinations: string[] = [];
-  if (inboxPhone && inboxPhone !== instancePhone) destinations.push(inboxPhone);
-  if (notifyPhone && notifyPhone !== instancePhone && !destinations.includes(notifyPhone)) {
-    destinations.push(notifyPhone);
-  }
-  // Last resort on Developer quota: self-chat still better than messaging the client
-  if (destinations.length === 0 && notifyPhone) destinations.push(notifyPhone);
-
-  let result: GreenSendResult = { ok: false, status: 502 };
-
-  for (const dest of destinations) {
-    const chatId = await resolveChatId(apiUrl, idInstance, apiToken, dest);
-    result = await sendGreenMessage(apiUrl, idInstance, apiToken, chatId, message);
-    if (result.ok) break;
-  }
+  // Always to owner's WhatsApp (992100944545). Never to the client.
+  // On the same linked number this appears in "Избранное / Вы" — but the owner always sees it.
+  const ownerChatId = `${ownerPhone}@c.us`;
+  const result = await sendGreenMessage(apiUrl, idInstance, apiToken, ownerChatId, message);
 
   if (!result.ok) {
     const quotaHint =
