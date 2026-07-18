@@ -344,8 +344,8 @@ export const pricingPlans: PricingPlan[] = [
     name: "САМОСТОЯТЕЛЬНЫЙ",
     price: "12.495₽",
     oldPrice: "24.990₽",
-    image: "/images/pricing/plan-1.svg",
-    grayscale: true,
+    image: "/images/pricing/plan-1.jpg",
+    grayscale: false,
     modules: [
       { number: 0, title: "Предобучение" },
       { number: 1, title: "Психология личного бренда" },
@@ -363,7 +363,7 @@ export const pricingPlans: PricingPlan[] = [
     name: "ПРЕМИУМ",
     price: "24.995₽",
     oldPrice: "49.990₽",
-    image: "/images/pricing/plan-2.svg",
+    image: "/images/pricing/plan-2.jpg",
     modules: [
       { number: 0, title: "Предобучение" },
       { number: 1, title: "Психология личного бренда" },
@@ -389,7 +389,7 @@ export const pricingPlans: PricingPlan[] = [
     displayTitle: "👑 VIP 👑",
     price: "59.995₽",
     oldPrice: "119.990₽",
-    image: "/images/pricing/plan-3.svg",
+    image: "/images/pricing/plan-3.jpg",
     modules: [
       { number: 0, title: "Предобучение" },
       { number: 1, title: "Психология личного бренда" },

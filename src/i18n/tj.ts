@@ -262,8 +262,8 @@ export const tjDictionary: LocaleDictionary = {
       name: "СТАНДАРТ ОНЛАЙН",
       price: "12.495₽",
       oldPrice: "24.990₽",
-      image: "/images/pricing/plan-1.svg",
-      grayscale: true,
+      image: "/images/pricing/plan-1.jpg",
+      grayscale: false,
       modules: programModulesTj
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -278,7 +278,7 @@ export const tjDictionary: LocaleDictionary = {
       name: "ПРЕМИУМ ОНЛАЙН ВА ОФФЛАЙН",
       price: "24.995₽",
       oldPrice: "49.990₽",
-      image: "/images/pricing/plan-2.svg",
+      image: "/images/pricing/plan-2.jpg",
       modules: programModulesTj
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -298,7 +298,7 @@ export const tjDictionary: LocaleDictionary = {
       displayTitle: "👑 VIP 👑",
       price: "59.995₽",
       oldPrice: "119.990₽",
-      image: "/images/pricing/plan-3.svg",
+      image: "/images/pricing/plan-3.jpg",
       modules: programModulesTj.map((m) => ({
         number: m.number,
         title: m.title,
@@ -343,6 +343,7 @@ export const tjDictionary: LocaleDictionary = {
   promo: {
     discount: "-50%",
     title: "ТАХФИФИ 50%",
+    titleDesktop: "ТАХФИФИ 50% БА ҲАМАИ ТАРИФҲО",
     timerLabel: "Тамом мешавад",
     days: "Рӯз",
     hours: "Соат",

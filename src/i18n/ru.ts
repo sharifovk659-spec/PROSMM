@@ -250,8 +250,8 @@ export const ruDictionary: LocaleDictionary = {
       name: "СТАНДАРТ ОНЛАЙН",
       price: "12.495₽",
       oldPrice: "24.990₽",
-      image: "/images/pricing/plan-1.svg",
-      grayscale: true,
+      image: "/images/pricing/plan-1.jpg",
+      grayscale: false,
       modules: programModulesRu
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -266,7 +266,7 @@ export const ruDictionary: LocaleDictionary = {
       name: "ПРЕМИУМ ОНЛАЙН И ОФФЛАЙН",
       price: "24.995₽",
       oldPrice: "49.990₽",
-      image: "/images/pricing/plan-2.svg",
+      image: "/images/pricing/plan-2.jpg",
       modules: programModulesRu
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -286,7 +286,7 @@ export const ruDictionary: LocaleDictionary = {
       displayTitle: "👑 VIP 👑",
       price: "59.995₽",
       oldPrice: "119.990₽",
-      image: "/images/pricing/plan-3.svg",
+      image: "/images/pricing/plan-3.jpg",
       modules: programModulesRu.map((m) => ({
         number: m.number,
         title: m.title,
@@ -331,6 +331,7 @@ export const ruDictionary: LocaleDictionary = {
   promo: {
     discount: "-50%",
     title: "СКИДКА 50%",
+    titleDesktop: "СКИДКА 50% НА ВСЕ ТАРИФЫ",
     timerLabel: "До конца",
     days: "День",
     hours: "Час",

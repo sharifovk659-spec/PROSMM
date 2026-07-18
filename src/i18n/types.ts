@@ -49,6 +49,7 @@ export interface LessonsBannerCopy {
 export interface PromoCopy {
   discount: string;
   title: string;
+  titleDesktop: string;
   timerLabel: string;
   days: string;
   hours: string;
