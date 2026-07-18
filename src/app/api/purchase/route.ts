@@ -29,52 +29,42 @@ function normalizePhone(phone: string): string | null {
   return null;
 }
 
-function formatDisplayPhone(digits: string) {
-  if (digits.startsWith("992") && digits.length === 12) {
-    return `+992 ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9)}`;
-  }
-  return `+${digits}`;
-}
-
-function buildLeadMessage(payload: {
+/**
+ * Message as if the client wrote it (Instagram DM style).
+ * Delivered into THAT person's WhatsApp chat — not "Message to yourself".
+ */
+function buildClientChatMessage(payload: {
   planName: string;
   name: string;
-  phoneDisplay: string;
-  phoneDigits: string;
   goal: string;
   locale: "ru" | "tj";
 }) {
-  const { planName, name, phoneDisplay, phoneDigits, goal, locale } = payload;
-  const waLink = `https://wa.me/${phoneDigits}`;
+  const { planName, name, goal, locale } = payload;
 
   if (locale === "ru") {
     return [
-      "🔔 *Уведомление с сайта PROSMM*",
+      "Салом! 👋",
       "",
-      "Новая заявка от клиента:",
+      "Я с сайта *PROSMM*.",
+      `Хочу тариф: *${planName}*`,
       "",
-      `👤 *Имя:* ${name}`,
-      `📦 *Тариф:* ${planName}`,
-      `📱 *Телефон:* ${phoneDisplay}`,
-      `🎯 *Цель:* ${goal}`,
+      `👤 Меня зовут: *${name}*`,
+      `🎯 Цель: ${goal}`,
       "",
-      "————————————",
-      `💬 Написать клиенту: ${waLink}`,
+      "Напишите мне, пожалуйста 🙏",
     ].join("\n");
   }
 
   return [
-    "🔔 *Огоҳӣ аз сайти PROSMM*",
+    "Салом! 👋",
     "",
-    "Заявкаи нав аз мизоҷ:",
+    "Ман аз сайти *PROSMM* омадам.",
+    `Мехоҳам тариф: *${planName}*`,
     "",
-    `👤 *Ном:* ${name}`,
-    `📦 *Тариф:* ${planName}`,
-    `📱 *Телефон:* ${phoneDisplay}`,
-    `🎯 *Ҳадаф:* ${goal}`,
+    `👤 Номам: *${name}*`,
+    `🎯 Ҳадаф: ${goal}`,
     "",
-    "————————————",
-    `💬 Ба мизоҷ нависед: ${waLink}`,
+    "Лутфан ҷавоб диҳед 🙏",
   ].join("\n");
 }
 
@@ -86,6 +76,30 @@ function isQuotaError(data: unknown): boolean {
     text.includes("quota has been exceeded") ||
     text.includes("Monthly quota")
   );
+}
+
+async function checkWhatsAppChatId(
+  apiUrl: string,
+  idInstance: string,
+  apiToken: string,
+  phoneDigits: string,
+): Promise<string | null> {
+  try {
+    const response = await fetch(`${apiUrl}/waInstance${idInstance}/checkWhatsapp/${apiToken}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phoneNumber: Number(phoneDigits), force: true }),
+    });
+    const data = (await response.json().catch(() => null)) as {
+      existsWhatsapp?: boolean;
+      chatId?: string;
+    } | null;
+
+    if (!response.ok || !data?.existsWhatsapp || !data.chatId) return null;
+    return data.chatId;
+  } catch {
+    return null;
+  }
 }
 
 async function sendGreenMessage(
@@ -128,8 +142,6 @@ export async function POST(request: Request) {
   const idInstance = process.env.GREEN_API_ID_INSTANCE?.trim();
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
   const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
-
-  // Owner WhatsApp — always deliver here so they see the lead on their phone
   const ownerPhone =
     normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER) ?? "992100944545";
 
@@ -175,33 +187,50 @@ export async function POST(request: Request) {
     );
   }
 
-  const message = buildLeadMessage({
-    planName,
-    name,
-    phoneDisplay: formatDisplayPhone(clientPhone),
-    phoneDigits: clientPhone,
-    goal,
-    locale,
-  });
+  const message = buildClientChatMessage({ planName, name, goal, locale });
 
-  // Always to owner's WhatsApp (992100944545). Never to the client.
-  // On the same linked number this appears in "Избранное / Вы" — but the owner always sees it.
-  const ownerChatId = `${ownerPhone}@c.us`;
-  const result = await sendGreenMessage(apiUrl, idInstance, apiToken, ownerChatId, message);
+  // Open chat with THAT client (like Instagram DM) — not "Message to yourself"
+  const clientChatId =
+    (await checkWhatsAppChatId(apiUrl, idInstance, apiToken, clientPhone)) ??
+    `${clientPhone}@c.us`;
+
+  let result = await sendGreenMessage(apiUrl, idInstance, apiToken, clientChatId, message);
+
+  // Fallback if Developer quota blocks new numbers — still notify owner
+  if (!result.ok) {
+    const fallback = [
+      locale === "ru" ? "🔔 Заявка с сайта (клиентский чат недоступен)" : "🔔 Заявка аз сайт (чати мизоҷ дастнорас)",
+      "",
+      `👤 ${name}`,
+      `📦 ${planName}`,
+      `📱 +${clientPhone}`,
+      `🎯 ${goal}`,
+      "",
+      `💬 https://wa.me/${clientPhone}`,
+    ].join("\n");
+
+    result = await sendGreenMessage(
+      apiUrl,
+      idInstance,
+      apiToken,
+      `${ownerPhone}@c.us`,
+      fallback,
+    );
+  }
 
   if (!result.ok) {
     const quotaHint =
       locale === "ru"
-        ? "Лимит Green API (тариф Developer). Откройте console.green-api.com и смените тариф на Business."
-        : "Лимити Green API (тарифи Developer). Дар console.green-api.com тарифи Business гиред.";
+        ? "Лимит Green API. Смените тариф на Business в console.green-api.com — тогда чат откроется с каждым клиентом."
+        : "Лимити Green API. Тарифи Business гиред дар console.green-api.com — он гоҳ бо ҳар мизоҷ чат кушода мешавад.";
 
     return NextResponse.json(
       {
         error: result.quotaExceeded
           ? quotaHint
           : locale === "ru"
-            ? "Не удалось отправить уведомление. Попробуйте снова."
-            : "Огоҳӣ фиристода нашуд. Дубора кӯшиш кунед.",
+            ? "Не удалось отправить. Проверьте номер WhatsApp."
+            : "Фиристода нашуд. Рақами WhatsApp-ро санҷед.",
       },
       { status: 502 },
     );
