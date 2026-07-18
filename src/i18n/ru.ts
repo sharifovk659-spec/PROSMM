@@ -213,7 +213,7 @@ export const ruDictionary: LocaleDictionary = {
     subtitleLine2: "С ПОМОЩЬЮ SMM",
     lessonCta: "БЕСПЛАТНЫЙ УРОК",
     collaborationText:
-      "Громкая коллаборация сильнейших экспертов в бизнесе и продвижении в Таджикистане",
+      "Курс сильнейшего эксперта по бизнесу и SMM в Таджикистане",
     collaborationNames: EXPERT_STATIC.name,
     footerText:
       "Увеличение клиентов, прибыли и продаж при помощи контент-маркетинга в 2026 году",

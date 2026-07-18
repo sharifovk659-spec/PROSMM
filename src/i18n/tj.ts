@@ -225,7 +225,7 @@ export const tjDictionary: LocaleDictionary = {
     subtitleLine2: "БО ЁРИИ SMM",
     lessonCta: "ДАРСИ РОЙГОН",
     collaborationText:
-      "Коллаборатсияи баланди қавитарин экспертҳои бизнес ва тарғибот дар Тоҷикистон",
+      "Курси қавитарин эксперти Бизнес ва Смм дар Тоҷикистон",
     collaborationNames: EXPERT_STATIC.name,
     footerText:
       "Зиёд кардани муштариён, фоида ва фурӯш тавассути контент-маркетинг дар соли 2026",
