@@ -315,7 +315,7 @@ export const tjDictionary: LocaleDictionary = {
       name: "СТАНДАРТ ОНЛАЙН",
       price: "12.495₽",
       oldPrice: "24.990₽",
-      image: "/images/audience/audience-3.jpg",
+      image: "/images/pricing/plan-1.jpg",
       grayscale: false,
       modules: programModulesTj
         .filter((m) => m.number <= 9)
@@ -331,7 +331,7 @@ export const tjDictionary: LocaleDictionary = {
       name: "ПРЕМИУМ ОНЛАЙН ВА ОФФЛАЙН",
       price: "24.995₽",
       oldPrice: "49.990₽",
-      image: "/images/audience/audience-2.jpg",
+      image: "/images/pricing/plan-2.jpg",
       modules: programModulesTj
         .filter((m) => m.number <= 9)
         .map((m) => ({ number: m.number, title: m.title })),
@@ -351,7 +351,7 @@ export const tjDictionary: LocaleDictionary = {
       displayTitle: "👑 VIP 👑",
       price: "59.995₽",
       oldPrice: "119.990₽",
-      image: "/images/lessons/img-8322.jpg",
+      image: "/images/pricing/plan-3.jpg",
       modules: programModulesTj.map((m) => ({
         number: m.number,
         title: m.title,
