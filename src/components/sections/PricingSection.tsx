@@ -144,16 +144,9 @@ function PricingCard({
         )}
 
         <div className="mt-auto pt-5 sm:pt-6">
-          <p className="font-[family-name:var(--font-bebas)] text-4xl leading-none text-black sm:text-[2.75rem]">
-            {plan.price}
-          </p>
-          <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-black/40 line-through sm:text-base">
-            {plan.oldPrice}
-          </p>
-
           <AnimatedButton
             onClick={() => onPurchase(planTitle)}
-            className="mt-4 w-full sm:mt-5"
+            className="w-full"
           >
             {purchaseLabel}
           </AnimatedButton>
