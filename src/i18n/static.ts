@@ -23,18 +23,22 @@ export function buildWhatsAppPurchaseUrl(
   const { planName, name, phone, goal } = payload;
   const text =
     locale === "ru"
-      ? `Здравствуйте! Я с сайта PROSMM.
+      ? `Салом! 👋
 
-Тариф: ${planName}
-Имя: ${name}
-Телефон: ${phone}
-Что хочу сделать: ${goal}`
-      : `Салом! Ман аз сайти PROSMM омадам.
+Я с сайта PROSMM.
+Хочу тариф: ${planName}
 
-Тариф: ${planName}
-Ном: ${name}
-Телефон: ${phone}
-Чӣ кор кардан мехоҳам: ${goal}`;
+👤 Имя: ${name}
+📱 Телефон: ${phone}
+🎯 Цель: ${goal}`
+      : `Салом! 👋
+
+Ман аз сайти PROSMM омадам.
+Мехоҳам тариф: ${planName}
+
+👤 Ном: ${name}
+📱 Телефон: ${phone}
+🎯 Ҳадаф: ${goal}`;
 
   return `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(text)}`;
 }
