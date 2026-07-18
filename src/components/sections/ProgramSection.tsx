@@ -71,19 +71,21 @@ function ModuleCard({
             {module.title}
           </h3>
 
-          <ol className={listGap}>
-            {module.lessons.map((lesson, i) => (
-              <li
-                key={lesson}
-                className={`flex gap-2 font-[family-name:var(--font-inter)] leading-relaxed text-black ${listText}`}
-              >
-                <span className="shrink-0 font-semibold text-[#ff8a4c]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{lesson}</span>
-              </li>
-            ))}
-          </ol>
+          {module.lessons.length > 0 && (
+            <ol className={listGap}>
+              {module.lessons.map((lesson, i) => (
+                <li
+                  key={`${i}-${lesson}`}
+                  className={`flex gap-2 font-[family-name:var(--font-inter)] leading-relaxed text-black ${listText}`}
+                >
+                  <span className="shrink-0 font-semibold text-[#ff8a4c]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>{lesson}</span>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
 
         <div

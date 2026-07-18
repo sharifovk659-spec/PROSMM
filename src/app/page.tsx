@@ -23,9 +23,9 @@ export default function Home() {
       <main className="relative bg-black">
         <HeroSection />
         <CourseBenefitsSection />
-        <VideoReviewsSection />
         <TargetAudienceSection />
         <ExpertsSection />
+        <VideoReviewsSection />
         <ProgramSection />
         <PricingSection />
         <LessonsBannerSection />
