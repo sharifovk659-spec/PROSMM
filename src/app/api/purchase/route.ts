@@ -53,7 +53,7 @@ function toChatId(phone: string) {
 export async function POST(request: Request) {
   const idInstance = process.env.GREEN_API_ID_INSTANCE?.trim();
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
-  const apiUrl = (process.env.GREEN_API_URL ?? "https://api.green-api.com").replace(/\/$/, "");
+  const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
   const notifyChatId = toChatId(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER);
 
   if (!idInstance || !apiToken) {
