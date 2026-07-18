@@ -342,7 +342,7 @@ export const tjDictionary: LocaleDictionary = {
   },
   promo: {
     discount: "-50%",
-    title: "ТАХФИФИ 50% БА ҲАМАИ ТАРИФҲО",
+    title: "ТАХФИФИ 50%",
     timerLabel: "Тамом мешавад",
     days: "Рӯз",
     hours: "Соат",

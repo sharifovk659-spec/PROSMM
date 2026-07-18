@@ -330,7 +330,7 @@ export const ruDictionary: LocaleDictionary = {
   },
   promo: {
     discount: "-50%",
-    title: "СКИДКА 50% НА ВСЕ ТАРИФЫ",
+    title: "СКИДКА 50%",
     timerLabel: "До конца",
     days: "День",
     hours: "Час",

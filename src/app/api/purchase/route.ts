@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { WHATSAPP_NUMBER } from "@/i18n/static";
 
 export const runtime = "nodejs";
 
@@ -11,50 +10,80 @@ interface PurchaseBody {
   locale?: "ru" | "tj";
 }
 
-function buildLeadMessage(payload: Required<Pick<PurchaseBody, "planName" | "name" | "phone" | "goal">> & { locale: "ru" | "tj" }) {
-  const { planName, name, phone, goal, locale } = payload;
+/** Normalize to international digits (992…) for Green API chatId. */
+function normalizePhone(phone: string): string | null {
+  let digits = phone.replace(/\D/g, "");
+  if (!digits) return null;
+  if (digits.startsWith("00")) digits = digits.slice(2);
+  if (digits.startsWith("992") && digits.length >= 12) return digits;
+  // Local TJ mobile: 9 digits
+  if (digits.length === 9) return `992${digits}`;
+  // Already full international without +
+  if (digits.length >= 10 && digits.length <= 15) return digits;
+  return null;
+}
+
+function toChatId(digits: string) {
+  return `${digits}@c.us`;
+}
+
+function formatDisplayPhone(digits: string) {
+  if (digits.startsWith("992") && digits.length === 12) {
+    return `+992 ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9)}`;
+  }
+  return `+${digits}`;
+}
+
+function buildLeadMessage(payload: {
+  planName: string;
+  name: string;
+  phoneDisplay: string;
+  goal: string;
+  locale: "ru" | "tj";
+}) {
+  const { planName, name, phoneDisplay, goal, locale } = payload;
 
   if (locale === "ru") {
     return [
-      "🔥 *НОВАЯ ЗАЯВКА — PROSMM*",
-      "━━━━━━━━━━━━━━━━",
+      "✨ *PROSMM*",
       "",
-      `📦 *Тариф:* ${planName}`,
-      `👤 *Имя:* ${name}`,
-      `📱 *Телефон:* ${phone}`,
-      `🎯 *Цель:* ${goal}`,
+      `Салом, *${name}*! 👋`,
+      "Ваша заявка принята.",
       "",
-      "━━━━━━━━━━━━━━━━",
-      "🌐 Сайт: https://prosmm.vercel.app",
-      "⏰ Свяжитесь с клиентом как можно скорее",
+      "📦 *Тариф*",
+      planName,
+      "",
+      `👤 ${name}`,
+      `📱 ${phoneDisplay}`,
+      `🎯 ${goal}`,
+      "",
+      "————————————",
+      "Мы скоро свяжемся с вами 🧡",
     ].join("\n");
   }
 
   return [
-    "🔥 *ЗАЯВКАИ НАВ — PROSMM*",
-    "━━━━━━━━━━━━━━━━",
+    "✨ *PROSMM*",
     "",
-    `📦 *Тариф:* ${planName}`,
-    `👤 *Ном:* ${name}`,
-    `📱 *Телефон:* ${phone}`,
-    `🎯 *Ҳадаф:* ${goal}`,
+    `Салом, *${name}*! 👋`,
+    "Дархости шумо қабул шуд.",
     "",
-    "━━━━━━━━━━━━━━━━",
-    "🌐 Сайт: https://prosmm.vercel.app",
-    "⏰ Бо мизоҷ ҳарчи зудтар тамос гиред",
+    "📦 *Тариф*",
+    planName,
+    "",
+    `👤 ${name}`,
+    `📱 ${phoneDisplay}`,
+    `🎯 ${goal}`,
+    "",
+    "————————————",
+    "Ба зудӣ бо шумо тамос мегирем 🧡",
   ].join("\n");
-}
-
-function toChatId(phone: string) {
-  const digits = phone.replace(/\D/g, "");
-  return `${digits}@c.us`;
 }
 
 export async function POST(request: Request) {
   const idInstance = process.env.GREEN_API_ID_INSTANCE?.trim();
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
   const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
-  const notifyChatId = toChatId(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER);
 
   if (!idInstance || !apiToken) {
     return NextResponse.json(
@@ -80,7 +109,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const message = buildLeadMessage({ planName, name, phone, goal, locale });
+  const phoneDigits = normalizePhone(phone);
+  if (!phoneDigits) {
+    return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
+  }
+
+  // Send TO the client's number → separate chat in owner's WhatsApp (not "Вы")
+  const chatId = toChatId(phoneDigits);
+  const message = buildLeadMessage({
+    planName,
+    name,
+    phoneDisplay: formatDisplayPhone(phoneDigits),
+    goal,
+    locale,
+  });
   const endpoint = `${apiUrl}/waInstance${idInstance}/sendMessage/${apiToken}`;
 
   try {
@@ -88,9 +130,9 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        chatId: notifyChatId,
+        chatId,
         message,
-        linkPreview: true,
+        linkPreview: false,
       }),
     });
 
@@ -103,7 +145,7 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ ok: true, idMessage: data?.idMessage ?? null });
+    return NextResponse.json({ ok: true, idMessage: data?.idMessage ?? null, chatId });
   } catch {
     return NextResponse.json({ error: "WhatsApp request failed" }, { status: 502 });
   }
