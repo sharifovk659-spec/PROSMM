@@ -68,6 +68,10 @@ export interface PurchaseFormCopy {
   goalLabel: string;
   goalPlaceholder: string;
   submit: string;
+  sending: string;
+  successTitle: string;
+  successText: string;
+  error: string;
   close: string;
   requiredHint: string;
 }
