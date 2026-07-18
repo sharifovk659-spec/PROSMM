@@ -37,45 +37,50 @@ function formatDisplayPhone(digits: string) {
   return `+${digits}`;
 }
 
+/**
+ * Lead notification for the business inbox.
+ * This is sent TO the owner's inbox number (not to the client),
+ * so on that phone it arrives as an incoming message from the business WhatsApp.
+ */
 function buildLeadMessage(payload: {
   planName: string;
   name: string;
   phoneDisplay: string;
+  phoneDigits: string;
   goal: string;
   locale: "ru" | "tj";
 }) {
-  const { planName, name, phoneDisplay, goal, locale } = payload;
+  const { planName, name, phoneDisplay, phoneDigits, goal, locale } = payload;
+  const waLink = `https://wa.me/${phoneDigits}`;
 
   if (locale === "ru") {
     return [
-      "✨ *PROSMM — новая заявка*",
+      "🔔 *Уведомление с сайта PROSMM*",
       "",
-      `👋 Клиент: *${name}*`,
+      "Новая заявка от клиента:",
       "",
-      "📦 *Тариф*",
-      `*${planName}*`,
-      "",
-      `📱 Телефон: ${phoneDisplay}`,
-      `🎯 Цель: ${goal}`,
+      `👤 *Имя:* ${name}`,
+      `📦 *Тариф:* ${planName}`,
+      `📱 *Телефон:* ${phoneDisplay}`,
+      `🎯 *Цель:* ${goal}`,
       "",
       "————————————",
-      "Ответьте в этом чате клиенту 🧡",
+      `💬 Написать клиенту: ${waLink}`,
     ].join("\n");
   }
 
   return [
-    "✨ *PROSMM — заявкаи нав*",
+    "🔔 *Огоҳӣ аз сайти PROSMM*",
     "",
-    `👋 Мизоҷ: *${name}*`,
+    "Заявкаи нав аз мизоҷ:",
     "",
-    "📦 *Тариф*",
-    `*${planName}*`,
-    "",
-    `📱 Телефон: ${phoneDisplay}`,
-    `🎯 Ҳадаф: ${goal}`,
+    `👤 *Ном:* ${name}`,
+    `📦 *Тариф:* ${planName}`,
+    `📱 *Телефон:* ${phoneDisplay}`,
+    `🎯 *Ҳадаф:* ${goal}`,
     "",
     "————————————",
-    "Дар ҳамин чат ба мизоҷ ҷавоб диҳед 🧡",
+    `💬 Ба мизоҷ нависед: ${waLink}`,
   ].join("\n");
 }
 
@@ -149,15 +154,34 @@ async function sendGreenMessage(
   }
 }
 
+async function resolveChatId(
+  apiUrl: string,
+  idInstance: string,
+  apiToken: string,
+  phoneDigits: string,
+) {
+  return (
+    (await checkWhatsAppChatId(apiUrl, idInstance, apiToken, phoneDigits)) ??
+    `${phoneDigits}@c.us`
+  );
+}
+
 export async function POST(request: Request) {
   const idInstance = process.env.GREEN_API_ID_INSTANCE?.trim();
   const apiToken = process.env.GREEN_API_TOKEN_INSTANCE?.trim();
   const apiUrl = (process.env.GREEN_API_URL ?? "https://7107.api.green-api.com").replace(/\/$/, "");
-  // Dedicated inbox number (must be in Green API allowed list on Developer plan)
+
+  // WhatsApp linked to Green API (sender). Messages FROM this number.
+  const instancePhone = normalizePhone(
+    process.env.GREEN_API_INSTANCE_PHONE ?? WHATSAPP_NUMBER,
+  );
+
+  // Where the owner should RECEIVE lead notifications (incoming on that phone).
+  // Must be a DIFFERENT number than instancePhone to look like a real notification.
   const inboxPhone = normalizePhone(
     process.env.GREEN_API_INBOX_PHONE ?? "992285855588",
   );
-  const ownerPhone = normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER);
+  const notifyPhone = normalizePhone(process.env.GREEN_API_NOTIFY_PHONE ?? WHATSAPP_NUMBER);
 
   if (!idInstance || !apiToken) {
     return NextResponse.json({ error: "WhatsApp API is not configured" }, { status: 503 });
@@ -188,8 +212,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const phoneDigits = normalizePhone(phone);
-  if (!phoneDigits || phoneDigits.length < 11) {
+  const clientPhone = normalizePhone(phone);
+  if (!clientPhone || clientPhone.length < 11) {
     return NextResponse.json(
       {
         error:
@@ -204,45 +228,43 @@ export async function POST(request: Request) {
   const message = buildLeadMessage({
     planName,
     name,
-    phoneDisplay: formatDisplayPhone(phoneDigits),
+    phoneDisplay: formatDisplayPhone(clientPhone),
+    phoneDigits: clientPhone,
     goal,
     locale,
   });
 
-  // 1) Prefer client's WhatsApp chat (separate chat, not "Вы")
-  const clientChatId =
-    (await checkWhatsAppChatId(apiUrl, idInstance, apiToken, phoneDigits)) ??
-    `${phoneDigits}@c.us`;
-
-  let result = await sendGreenMessage(apiUrl, idInstance, apiToken, clientChatId, message);
-
-  // 2) If quota / fail — send to dedicated inbox number (not owner self-chat)
-  if (!result.ok && inboxPhone && inboxPhone !== ownerPhone) {
-    const inboxChatId =
-      (await checkWhatsAppChatId(apiUrl, idInstance, apiToken, inboxPhone)) ??
-      `${inboxPhone}@c.us`;
-    result = await sendGreenMessage(apiUrl, idInstance, apiToken, inboxChatId, message);
+  // Deliver ONLY to business inbox — never send CRM text to the client
+  // (that looked like the owner typed it themselves).
+  const destinations: string[] = [];
+  if (inboxPhone && inboxPhone !== instancePhone) destinations.push(inboxPhone);
+  if (notifyPhone && notifyPhone !== instancePhone && !destinations.includes(notifyPhone)) {
+    destinations.push(notifyPhone);
   }
+  // Last resort on Developer quota: self-chat still better than messaging the client
+  if (destinations.length === 0 && notifyPhone) destinations.push(notifyPhone);
 
-  // 3) Last resort: owner number (may appear as "Вы" on Developer plan)
-  if (!result.ok && ownerPhone) {
-    const ownerChatId = `${ownerPhone}@c.us`;
-    result = await sendGreenMessage(apiUrl, idInstance, apiToken, ownerChatId, message);
+  let result: GreenSendResult = { ok: false, status: 502 };
+
+  for (const dest of destinations) {
+    const chatId = await resolveChatId(apiUrl, idInstance, apiToken, dest);
+    result = await sendGreenMessage(apiUrl, idInstance, apiToken, chatId, message);
+    if (result.ok) break;
   }
 
   if (!result.ok) {
     const quotaHint =
       locale === "ru"
-        ? "Лимит Green API (тариф Developer). Откройте console.green-api.com и смените тариф на Business, либо добавьте номер клиента в разрешённые."
-        : "Лимити Green API (тарифи Developer). Дар console.green-api.com тарифи Business гиред, ё рақами мизоҷро ба рӯйхати иҷозатшуда илова кунед.";
+        ? "Лимит Green API (тариф Developer). Откройте console.green-api.com и смените тариф на Business."
+        : "Лимити Green API (тарифи Developer). Дар console.green-api.com тарифи Business гиред.";
 
     return NextResponse.json(
       {
         error: result.quotaExceeded
           ? quotaHint
           : locale === "ru"
-            ? "Не удалось отправить. Проверьте номер WhatsApp и попробуйте снова."
-            : "Фиристода нашуд. Рақами WhatsApp-ро санҷед ва дубора кӯшиш кунед.",
+            ? "Не удалось отправить уведомление. Попробуйте снова."
+            : "Огоҳӣ фиристода нашуд. Дубора кӯшиш кунед.",
       },
       { status: 502 },
     );
